@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml', 'ui/menu'] },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <th colspan="2">
+        <h1>Where Do Sine and Cosine Waves Come From?</h1>
+      </th>
+    </tr>
+    <tr>
+      <td colspan="2" class="description">
+        <p>
+          The heart of the matter is that this right-angled triangle your learnt about in school is simply a tool for
+          understanding rotation and is constructed inside a circle where the triangle's longest side is the circle's
+          radius.
+        </p>
+        <p>
+          To understand this, let's draw a circle with a radius of one unit whose centre (point `O`) is located at the
+          origin of some coordinate system. Next, we mark a point `C` where the circumference of the circle crosses the
+          positive X axis.
+        </p>
+        <p>
+          Now, as point `C` rotates in an anti-clockwise direction, we can see that a right-angled triangle is formed
+          within the circle whose width is the distance between point `C` and some point `W` projected onto the Y axis,
+          and whose height is the distance between point `C` and some point `H` projected onto the X axis.
+        </p>
+        <p>
+          As point `C` moves around the circle, point `W` moves up and down the Y axis, and point `H` moves left and
+          right along the X axis. The key point to understand here is that the height (line `CH`) and width (line `CW`)
+          change in a fixed ratio that is directly proportional to the angle of rotation.
+        </p>
+        <p>
+          The graphs to the right of and below the circle trace a wave shape that describes how the height and width of
+          the triangle vary with the angle.
+        </p>
+        <p>
+          Also notice that a sine wave and a cosine wave have exactly the same shape; the only difference being that
+          when the angle is zero, the sine wave has a value of zero, but the cosine wave has a value of one.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="circleBox" class="circleBox"></div>
+      </td>
+      <td>
+        <div id="sineBox" class="sineBox"></div>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+        <div id="cosineBox" class="cosineBox"></div>
+      </td>
+      <td class="description">
+        <h2>Trigonometric Functions</h2>
+        <p>
+          If we divide the height `CH` or the width `CW` of the triangle by the length of the radius `OC`, we obtain a
+          fraction that exactly represents the angle of rotation. Also this relationship is a two-way street. If we know
+          the angle, we can work out the ratio, and if we know the ratio, we can work out the angle.
+        </p>
+        <p>
+          The trigonometric functions are simply the names given to these ratios.
+        </p>
+
+        <h3>Sine</h3>
+        <p>"Sine" is the name given to the ratio of the height `CH` of the triangle to the radius `OC` of the
+          circle. This value varies in the range `-1..+1`.
+        </p>
+        <p>
+          There is an exact relationship between the angle &theta; and the ratio of height to radius.
+          So when we use the function `sin(&theta;)`, we are really calculating
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mfrac>
+              <mi>height</mi>
+              <mi>radius</mi>
+            </mfrac>
+          </math>
+        </p>
+        <p>
+          Since we have arbitrarily defined our circle to have a radius of one, the sine of the angle is simply the
+          height of the triangle.<br>
+        </p>
+        <p>
+          Similarly, if we know the sine value of an angle, we can turn that fraction back into an angle using the
+          inverse
+          sine function: `&theta; = sin^-1 (value)`. (Also written `arcsin()`)
+        </p>
+
+        <h3>Cosine</h3>
+        <p>"Cosine" is the name given to the ratio of the width `CW` of the triangle to the radius `OC` of the
+          circle. This value varies in the range `-1..+1`.
+        </p>
+        <p>
+          There is an exact relationship between the angle &theta; and the ratio of width to radius.
+          So when we use the function `cos(&theta;)`, we are really calculating
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mfrac>
+              <mi>width</mi>
+              <mi>radius</mi>
+            </mfrac>
+          </math>
+        </p>
+        <p>
+          Since we have arbitrarily defined our circle to have a radius of one, the cosine of the angle is simply the
+          width of the triangle.<br>
+        </p>
+        <p>
+          Similarly, if we know the cosine value of an angle, we can turn that fraction back into an angle using the
+          inverse cosine function: `&theta; = cos^-1 (value)`. (Also written `arccos()`)
+        </p>
+
+        <h3>Tangent</h3>
+        <p>
+          Lastly, "tangent" is the name given to the ratio of the triangle's height `CH` to its width `CW`. The tangent
+          value varies in the range `-&infin;..+&infin;`.
+        </p>
+        <p>
+          If we know the angle &theta;, then the value known as `tan(&theta;)` can be obtained by calculating
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mfrac>
+              <mi>height</mi>
+              <mi>width</mi>
+            </mfrac>
+          </math>
+        </p>
+        <p>
+          Similarly, if we know the tangent value of an angle, we can turn that value back into an angle using the
+          inverse
+          tangent function: `&theta; = tan^-1(value)` (Also written `arctan()`)
+        </p>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./generate_sine_cosine.js"></script>
+</body>
+
+</html>
