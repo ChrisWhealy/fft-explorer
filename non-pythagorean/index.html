@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <td colspan="2" class="description">
+        <h2>The Non-Pythagorean Theorem</h2>
+        <p align="center">
+          <i>"The area of the square on the hypotenuse is equal to<br>the sum of the areas of the squares on the other
+            two sides"</i>
+        </p>
+        <p>
+          Although no writings of Pythagoras have ever been discovered, by the Late Roman Period, he was already held in
+          high regard as a philosopher and mathematician.
+          Consequently, the discovery of this relationship had already been attributed to him in spite of the fact that
+          it had been widely known for at least 1000 years before his birth.
+        </p>
+        <p>
+          One of the earliest documents known to record this relationship is the <a
+            href="https://en.wikipedia.org/wiki/Berlin_Papyrus_6619" target="_new">Berlin Papyrus 6619</a> written in
+          Ancient Egypt during the 13th Dynasty (1990 - 1800 BC).
+        </p>
+        <p>
+          All that to say, as you drag point `C` around the circle, you'll see that the sum of the areas of the two green
+          squares always equals the area of the blue square.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="pythagorasBox" class="pythagorasBox"></div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="description">
+        <h2>The Origin of a Trigonometric Identity</h2>
+        <p>
+          Since we have decided to assign this circle a radius of one unit, the definitions of <code>sin(&theta;)</code>
+          and <code>cos(&theta;)</code> can be reduced simply to <code>sin(&theta;) = height</code> and
+          <code>cos(&theta;) = width</code>.
+        </p>
+        <p>
+          This also means that the areas of the various squares shown above will be:
+        <ul>
+          <li>The area of the square on the radius (the hypotenuse) is always equal to 1</li>
+          <li>The area of the square opposite the angle is always equal to <code>height<sup>2</sup></code> which is the
+            same as
+            <code>sin(&theta;)<sup>2</sup></code>
+          </li>
+          <li>The area of the square adjacent to the angle is always equal to <code>width<sup>2</sup></code> which is
+            the same as
+            <code>cos(&theta;)<sup>2</sup></code>
+          </li>
+        </ul>
+        We now have a simple, visual demonstration of the trigonometric identity
+        <code>sin(&theta;)<sup>2</sup> + cos(&theta;)<sup>2</sup> = 1</code>.
+        </p>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>
