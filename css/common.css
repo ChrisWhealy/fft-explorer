@@ -52,6 +52,14 @@ div.cosineBox {
   height: 800px;
 }
 
+div.waveBox {
+  width: 800px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
+
 div.twoWavesBox {
   width: 800px;
   height: 400px;
