@@ -61,6 +61,8 @@
         </p>
         <p>
           Below, we can see two sine waves that are offset from each other by 90&deg;.
+          By moving the slider left and right, you can see how the phase of the blue wave changes in relation to the
+          green wave.
         </p>
       </td>
     </tr>
@@ -76,16 +78,16 @@
           graph&hellip;
         </p>
         <p>
-          If you move the "Phase shift" slider over to the far left, then you can see that the blue wave now lines up
-          exactly with the green wave.
-          This is because compared to a sine wave, a cosine wave always has a phase shift of 90&deg;.
+          If you move the slider over to the far left, then you can see that the blue wave now lines up exactly with the
+          green wave.
+          This is because compared to a sine wave, the cosine wave of the same angle always has a phase shift of 90&deg;.
         </p>
         <p>
           If we now think of the blue wave above as a cosine wave instead of a sine wave, then we can see that:<br>
           <br>
-          `sin(&theta; + 90) = cos(&theta;)`<br>
+          `cos(&theta;) = sin(&theta; + 90)`<br>
           or<br>
-          `cos(&theta; - 90) = sin(&theta;)`
+          `sin(&theta;) = cos(&theta; - 90)`
         </p>
       </td>
     </tr>
@@ -116,6 +118,13 @@
           If we know for a wave of a particular frequency `f`, that it has rotated through an angle &theta;, then we
           can calculate how much time that took using the formula:<br>
           `t=&theta;/(f xx 360&deg;)`
+        </p>
+        <p>
+          So for a wave that has a frequency of 100Hz, a phase shift of 90&deg; corresponds to a time delay of:
+        </p>
+        <p>
+          `t=90/(100 xx 360&deg;)`<br>
+          `t=2.5ms`<br>
         </p>
         <p>
           Similarly, we could rearrange this formula to calculate the angle `&theta;` given the frequency `f` and the

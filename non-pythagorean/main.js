@@ -1,7 +1,6 @@
 // Pythagoras box
-const PYTHAG_LIMIT = 2.0
 let pythagBox = JXG.JSXGraph.initBoard('pythagorasBox', {
-  boundingbox: [-PYTHAG_LIMIT, PYTHAG_LIMIT, PYTHAG_LIMIT, -1.5],
+  boundingbox: [-1.8, 1.8, 1.8, -1.5],
   keepaspectratio: true,
   axis: false,
   showCopyright: false,
@@ -39,14 +38,24 @@ pythagBox.create(
   {});
 
 pythagBox.create('text',
-  [-1.8, 1.83,
+  [-1.7, 1.78,
   () => `Area of the square on the opposite = ${(circumference.Y() * circumference.Y()).toPrecision(3)}`
   ]
 );
 
 pythagBox.create('text',
-  [-1.8, 1.7,
+  [-1.7, 1.65,
   () => `Area of the square on the adjacent = ${(circumference.X() * circumference.X()).toPrecision(3)}`
+  ]
+);
+
+pythagBox.create('text',
+  [-1.035, 1.52,
+  () => {
+    let oppArea = circumference.X() * circumference.X()
+    let adjArea = circumference.Y() * circumference.Y()
+    return `Sum of the areas = ${(oppArea + adjArea).toPrecision(3)}`
+  }
   ]
 );
 
