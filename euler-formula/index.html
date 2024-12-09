@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <td class="description">
+        <h2>Euler's Formula</h2>
+        <p>
+          Previously, we saw that `e^x`, `sin(&theta;)` and `cos(&theta;)` can all be written as Maclaurin series, and
+          that
+          these series are very similar.
+        </p>
+        <table>
+          <tr>
+            <td>`e^x`</td>
+            <td>`=`</td>
+            <td>`1`</td>
+            <td>`+`</td>
+            <td>`x`</td>
+            <td>`+`</td>
+            <td>`x^2/(2!)`</td>
+            <td>`+`</td>
+            <td>`x^3/(3!)`</td>
+            <td>`+`</td>
+            <td>`x^4/(4!)`</td>
+            <td>`+`</td>
+            <td>`x^5/(5!)`</td>
+            <td>`+`</td>
+            <td>`x^6/(6!)`</td>
+            <td>`+`</td>
+            <td>`x^7/(7!)`</td>
+          </tr>
+          <tr>
+            <td>`sin(&theta;) + cos(&theta;)`</td>
+            <td>`=`</td>
+            <td>`1`</td>
+            <td>`+`</td>
+            <td>`&theta;`</td>
+            <td>`-`</td>
+            <td>`&theta;^2/(2!)`</td>
+            <td>`-`</td>
+            <td>`&theta;^3/(3!)`</td>
+            <td>`+`</td>
+            <td>`&theta;^4/(4!)`</td>
+            <td>`+`</td>
+            <td>`x^5/(5!)`</td>
+            <td>`-`</td>
+            <td>`&theta;^6/(6!)`</td>
+            <td>`-`</td>
+            <td>`x^7/(7!)`</td>
+          </tr>
+        </table>
+        <p>
+          Taking what we know about the cycle of values created when we raise `i` to increasing powers, we can now write
+          the Maclaurin series for `e^(ix)`.
+        </p>
+        <p>
+          So, wherever an `x` appears in the expansion of `e^x`, we will now write `ix`.
+        </p>
+        <p>
+          `e^x = 1 + x + (x^2)/(2!) + (x^3)/(3!) + (x^4)/(4!) + (x^5)/(5!) + ...`
+        </p>
+        <p>
+          becomes
+        </p>
+        <p>
+          `e^(ix) = 1 + ix + (ix)^2/(2!) + (ix)^3/(3!) + (ix)^4/(4!) + (ix)^5/(5!) + ...`
+        </p>
+        <p>
+          now reduce the various powers of `i` down to their simplest form
+        </p>
+        <p>
+          `e^(ix) = 1 + ix - x^2/(2!) - (ix^3)/(3!) + x^4/(4!) + (ix^5)/(5!) + ...`
+        </p>
+        <p>
+          We can now see that all the terms raised to an even power have no `i` in them, and all the terms raised to an
+          odd power do have an `i`.
+          So we can rearrange the terms to group all the odd powers together, then factor out the `i`
+        </p>
+        <p>
+          `e^(ix) = (1 - x^2/(2!) + x^4/(4!) - &hellip;) + i(x - (x^3)/(3!) + (x^5)/(5!) - &hellip;)`
+        </p>
+        <p>
+          This might start to look familiar.
+          All the even powered terms are the Maclaurin series for `cos(&theta;)` and all the odd powered terms are the
+          Maclaurin series for `sin(&theta;)`
+        </p>
+        <p>
+          So we can now take the last step and replace the groups of terms for their `sin` and `cos` equivalents:
+        </p>
+        <p style="text-align: center;">
+          `e^(ix) = cos(x) + i sin(x)`
+        </p>
+        <p>
+          This is known as Euler's Formula
+        </p>
+        <h3>Euler's Identity - A Special Case of Euler's Formula</h3>
+        <p>
+          In the lesson about measuring angles in radians, we saw that if you create an arc around the circuference of a
+          circle whose length equals exactly one radius, then the angle you have created measures 1 radian.
+          The key point about radians is that we are now measuring rotation in multiples of `pi` &mdash; there are `2
+          pi` radians in a full circle.
+        </p>
+        <p>
+          Let's see what happens to Euler's formula if we set `x = pi` radians (that is, we're measuring a half
+          rotation).
+        </p>
+        <p>
+          `e^(i pi) = cos(pi) + i sin(pi)`
+        </p>
+        <p>
+          Firstly, `cos(pi) = -1` and secondly, `sin(pi) = 0`, so we get
+        </p>
+        <p>
+          `e^(i pi) = -1 + i xx 0`<br>
+          `e^(i pi) = -1`<br>
+        </p>
+        <p>
+          Now add `1` to both sides, and we get the famous Euler identity
+        </p>
+        <p style="text-align: center;">
+          `e^(i pi) + 1 = 0`
+        </p>
+        <p>
+          This formula has been described as one of the most beautiful in all of mathematics because it shows how the 5
+          most fundamental constants are related:
+        <ul>
+          <li>`e` - The natural base</li>
+          <li>`i` - The square root of `-1`</li>
+          <li>`pi` - The ratio of the diameter of a circle to its circumference</li>
+          <li>`1` - The fundamental counting unit</li>
+          <li>`0` - The midpoint of the real number line</li>
+        </ul>
+        </p>
+      </td>
+    </tr>
+
+    </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>
