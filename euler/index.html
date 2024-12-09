@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <td class="description">
+        <h2>Euler's Number</h2>
+        <table>
+          <tr>
+            <td style="vertical-align: top;">
+              <p>
+                Leonhard Euler (1707 - 1783) was a Swiss mathematician who is generally regarded as one of the most
+                brilliant mathematicians ever to have lived.
+              </p>
+              <p>
+                Coming from the city of Basel in a German speaking region of Switzerland, his last name is pronounced
+                "oiler", not "yooler".
+              </p>
+              <p>
+                The number that now bears Leonhard Euler's name was not in fact derived by him; instead, it was derived
+                by another Swiss mathematician, <a
+                  href="https://en.wikipedia.org/wiki/Jacob_Bernoulli#Discovery_of_the_mathematical_constant_e">Jacob
+                  Bernoulli</a> (1655 - 1705).
+              </p>
+              <p>
+                Bernoulli was investigating the nature of compound interest and discovered that no matter how many times
+                you calculate compound interest during the year, the original sum (known as the principal) will never
+                grow by more than a factor of 2.718
+              </p>
+            </td>
+            <td style="vertical-align: top;">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg/220px-Leonhard_Euler_-_Jakob_Emanuel_Handmann_%28Kunstmuseum_Basel%29.jpg" />
+            </td>
+          </tr>
+        </table>
+        <p>
+          The formula for calculating this limit is `(1 + 1/n)^n` where `n` is the number of times when compound
+          interest is calculated.
+        </p>
+        <p>
+          So if you calculated interest once every month, `n` would be `12`, and the growth factor is `2.613`.
+          Change `n` to 24 and the growth factor rises to `2.664`.
+          Bernoulli's insight was to realise that as `n` grows to infinity, so the result approaches, but never exceeds
+          `2.718`.
+          This is an example of a limit.
+        </p>
+        <p>
+          To 30 decimal places, this value is `2.718281828459045235360287471352`
+        </p>
+        <h3>Infinite Series for `e`</h3>
+        <p>
+          However, it was Leonhard Euler who demonstrated that the same limit could be calculated using an infinite
+          series.
+        </p>
+        <p>
+          The formula Euler derived is this: `e = sum_(n=0)^oo 1/(n!)`
+        </p>
+        <p>
+          If you're not familiar with this notation, here's how to understand it:
+        </p>
+        <ol>
+          <li>
+            The capital Greek letter sigma means "summation"; so we immediately know we will
+            have to add up some numbers.</li>
+          <li>
+            Below the capital sigma, we can see `n=0` and above, we see the symbol for infinity `oo`.
+            This tells us the starting and ending numbers for each term in the series &mdash; which in this case goes on
+            for ever&hellip;
+          </li>
+          <li>
+            Next, we see the formula `1/(n!)`<br>
+            This formula tells us how to calculate each term of series: all we have to do is substitute the next value
+            in the sequence for `n`.
+            So we get the value of the first term by setting `n=0`, then to that, we add the value when `n=1`, then to
+            that, we add the value when `n=2`, then `n=3`, then `n=4` and&hellip; You get the idea.
+          </li>
+        </ol>
+        <p>
+
+          However, in practical terms, it is completely impossible to add up an infinite series of numbers, so we'll
+          just do the best we can by adding up the first few terms.
+        </p>
+        <p>
+          `e = 1/(0!) + 1/(1!) + 1/(2!) + 1/(3!) + 1/(4!) + 1/(5!) + ...`
+        </p>
+        <p>
+          If you're wondering what the `!` after the number means, this is the factorial symbol.
+        </p>
+        <p>
+          So `n! = n xx (n-1) xx (n-2) xx (n-3) xx ... xx 2 xx 1`<br>
+        </p>
+        <p>
+          You might also be wondering how, if the first value of `n` is `0`, why the first term in the series is `1`
+          and not `0`.
+          This is because <a href="https://en.wikipedia.org/wiki/Factorial#Factorial_of_zero" target="_new">`0! = 1`</a>
+        </p>
+        <p>
+          So when fully expanded, the first six terms of the summation series looks like this:
+        </p>
+        <p>
+          `e = 1 + 1 + 1/2 + 1/6 + 1/24 + 1/120 + ...`
+        </p>
+        <h3>Infinite Series for `e^x`</h3>
+        <p>
+          More generally, if you wish to calculate `e` raised to some power `x`, then the formula is very similar:
+        </p>
+        <p>
+          `e^x = sum_(n=0)^oo (x^n)/(n!)`
+        </p>
+        <p>
+          Which expands out to `e^x = 1 + x + (x^2)/(2!) + (x^3)/(3!) + (x^4)/(4!) + (x^5)/(5!) + ...`
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

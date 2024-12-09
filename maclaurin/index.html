@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <td class="description">
+        <h2>Maclaurin Series</h2>
+        <p>
+          The formula for calculating `e^x` is an example of a <a href="https://en.wikipedia.org/wiki/Colin_Maclaurin"
+            target="_new">Maclaurin</a> series.
+          Many other values can be calculated using a Maclaurin series, but the two that are of particular interest to
+          us are the series for calculating sine and cosine.
+        </p>
+        <table>
+          <tr>
+            <td>`sin(&theta;) = sum_(n=0)^oo (-1^n xx &theta;^(2n+1))/((2n+1)!)`</td>
+            <td>which expands out to</td>
+            <td>`sin(&theta;) = &theta; - (&theta;^3)/(3!) + (&theta;^5)/(5!) - (&theta;^7)/(7!) + ...`</td>
+          </tr>
+          <tr>
+          </tr>
+          <td colspn="3">&nbsp;</td>
+          <tr>
+            <td>`cos(&theta;) = sum_(n=0)^oo (-1^n xx &theta;^(2n))/(2n!)`</td>
+            <td>which expands out to</td>
+            <td>`cos(&theta;) = 1 - (&theta;^2)/(2!) + (&theta;^4)/(4!) - (&theta;^6)/(6!) + ...`</td>
+          </tr>
+        </table>
+        <h3>e<sup>x</sup> Almost Equals sin(&theta;) + cos(&theta;)</h3>
+        <p>
+          But hang on a minute&hellip; the infinite series for calculating `sin(&theta;)` and `cos(&theta;)` have a
+          very similar structure to the formula for `e^x`.
+        </p>
+        <p>
+          `e^x = 1 + x + (x^2)/(2!) + (x^3)/(3!) + (x^4)/(4!) + (x^5)/(5!) + ...`
+        </p>
+        <p>
+          The formula for `e^x` is a sequence of terms where the power of each term goes up by one.
+        </p>
+        <p>
+          The formula for `sin(&theta;)` is similar to the formula for `e^x`, but contains only the terms raised to odd
+          powers.
+        </p>
+        <p>
+          The formula for `cos(&theta;)` contains only the terms raised to even powers.
+        </p>
+        <p>
+          Let's try writing out each series so that the odd and even terms line up with each other:
+        </p>
+        <table>
+          <tr>
+            <td>`e^x`</td>
+            <td>`=`</td>
+            <td class="column">`1`</td>
+            <td class="column">`+`</td>
+            <td>`x`</td>
+            <td class="column">`+`</td>
+            <td>`x^2/(2!)`</td>
+            <td class="column">`+`</td>
+            <td>`x^3/(3!)`</td>
+            <td class="column">`+`</td>
+            <td>`x^4/(4!)`</td>
+            <td class="column">`+`</td>
+            <td>`x^5/(5!)`</td>
+            <td class="column">`+`</td>
+            <td>`x^6/(6!)`</td>
+            <td class="column">`+`</td>
+            <td>`x^7/(7!)`</td>
+          </tr>
+          <tr>
+            <td>`sin(&theta;)`</td>
+            <td>`=`</td>
+            <td class="column"></td>
+            <td class="column"></td>
+            <td>`&theta;`</td>
+            <td class="column"></td>
+            <td></td>
+            <td class="column">`-`</td>
+            <td>`&theta;^3/(3!)`</td>
+            <td class="column"></td>
+            <td></td>
+            <td class="column">`+`</td>
+            <td>`x^5/(5!)`</td>
+            <td class="column"></td>
+            <td></td>
+            <td class="column">`-`</td>
+            <td>`x^7/(7!)`</td>
+          </tr>
+          <tr>
+            <td>`cos(&theta;)`</td>
+            <td>`=`</td>
+            <td class="column">`1`</td>
+            <td class="column"></td>
+            <td></td>
+            <td class="column">`-`</td>
+            <td>`&theta;^2/(2!)`</td>
+            <td class="column"></td>
+            <td></td>
+            <td class="column">`+`</td>
+            <td>`&theta;^4/(4!)`</td>
+            <td class="column"></td>
+            <td></td>
+            <td class="column">`-`</td>
+            <td>`&theta;^6/(6!)`</td>
+            <td class="column"></td>
+            <td></td>
+          </tr>
+        </table>
+        <p>
+          If we now combine the `sin` and `cos` series, we get something that <b><i>almost</i></b> equals the series for
+          `e^x`.
+        </p>
+        <table>
+          <tr>
+            <td>`e^x`</td>
+            <td>`=`</td>
+            <td>`1`</td>
+            <td>`+`</td>
+            <td>`x`</td>
+            <td>`+`</td>
+            <td>`x^2/(2!)`</td>
+            <td>`+`</td>
+            <td>`x^3/(3!)`</td>
+            <td>`+`</td>
+            <td>`x^4/(4!)`</td>
+            <td>`+`</td>
+            <td>`x^5/(5!)`</td>
+            <td>`+`</td>
+            <td>`x^6/(6!)`</td>
+            <td>`+`</td>
+            <td>`x^7/(7!)`</td>
+          </tr>
+          <tr>
+            <td>`sin(&theta;) + cos(&theta;)`</td>
+            <td>`=`</td>
+            <td>`1`</td>
+            <td>`+`</td>
+            <td>`&theta;`</td>
+            <td>`-`</td>
+            <td>`&theta;^2/(2!)`</td>
+            <td>`-`</td>
+            <td>`&theta;^3/(3!)`</td>
+            <td>`+`</td>
+            <td>`&theta;^4/(4!)`</td>
+            <td>`+`</td>
+            <td>`x^5/(5!)`</td>
+            <td>`-`</td>
+            <td>`&theta;^6/(6!)`</td>
+            <td>`-`</td>
+            <td>`x^7/(7!)`</td>
+          </tr>
+        </table>
+        <p>
+          But there's a problem with the signs&hellip;
+        </p>
+        <p>
+          In the `sin` and `cos` series, the signs alternate positive, negative, postive,negative; but in the series for
+          the Euler number, all the signs are positive.
+        </p>
+        <p>
+          We need a way to change all the negative terms to positive ones.
+        </p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
