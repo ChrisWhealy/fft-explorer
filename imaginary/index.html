@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <td class="description">
+        <h2>Imaginary Numbers</h2>
+        <p>
+          The Renaissance was a period of intellectual awakening in which European thinkers rediscovered the classical
+          literature of Greece and Rome.
+          As a result of the Greeks being masters of geometry, European mathematicians inherited a conceptual framework
+          in which a mathematical concept was not considered reliable unless you could offer a geometric proof.
+        </p>
+        <p>
+          One powerful, but largely unspoken consequence of this approach was the assumption that if you could not draw
+          your solution, then there was no solution.
+          This is why Greek mathematicians widely rejected the idea that there could be a quantity called `zero`; it
+          just seemed philosophically wrong: after all, how could you draw a line with a length of `zero`?
+        </p>
+        <p>
+          Reservations such as these became embedded into European thinking and it took several centuries for them to be
+          unlearnt.
+          However, as the Renaissance slowly transformed into the Enlightenment, mathematicians discovered that this new
+          algebraic notation offered a way to express proofs of more abstract concepts far more easily than remaining
+          anchored to the older geometric approach.
+        </p>
+        <h3>Squares and Square Roots</h3>
+        <p>
+          When you multiply a number by itself, you said to have "squared" that number.
+          Reversing this process is called "taking the square root".
+          The point here is that when you square any of the normal counting numbers, the answer will always be positive:
+        </p>
+        <p>
+          A positive number multipled by itself is positive: `2 xx 2 = 4`<br>
+          And a negative number multipled by itself is also positive: `-3 xx -3 = 9`
+        </p>
+        <p>
+          Similarly, when you take the square root of a number, you must remember that there are always two answers: one
+          positive and the other negative.
+        </p>
+        <p>
+          `sqrt 4 = pm 2`<br>`sqrt 9 = pm 3`
+        </p>
+        <p>
+          For several centuries before Euler, mathematicians considered it impossible (or even morally wrong) to talk
+          about the square root of a negative number.
+          It was considered inconceivable for there to be a number that, when multiplied by itself, gave the answer
+          `-1`.
+        </p>
+        <p>
+          Yet these bizarre numbers simply would not go away &mdash; they kept haunting the solutions to cubic
+          equations&hellip;
+        </p>
+        <h3>Making the Conceptual Leap</h3>
+        <p>
+          The fundamental problem here was a conceptual one &mdash; if I can count to a number, then I can say something
+          like <i>"I have three apples"</i>.
+          The quantity three is a number we can count to.
+          It represents a real, tangible quantity of physical objects.
+        </p>
+        <p>
+          But what quantity should we write when calculating `sqrt (-9)`?
+        </p>
+        <p>
+          It's not `+3` and its not `-3`, but a `3` must be involved somewhere &mdash; and herein lies the problem.
+        </p>
+        <p>
+          <b><i>There is a 3 here, but its not the sort of 3 you can count to.</i></b>
+        </p>
+        <p>
+          If this makes your brain hurt, then don't worry &mdash; you're in good company.
+        </p>
+        <p>
+          Mathematicians found the concept of <i>"a number you cannot count to"</i> deeply perplexing as there just
+          doesn't seem to be an intuitive way to conceptualise such a quantity.
+        </p>
+        <p>
+          We can come close by rewriting `-9` as `9 xx -1`.
+          Then at least we can calculate the square root of the positive part.
+        </p>
+        <p>
+          `sqrt (9 xx -1)` simplifies to `3 xx sqrt (-1)`, but this is only a partial result because that pesky `sqrt
+          (-1)` simply won't go away.
+        </p>
+        <p>
+          What mathematicians struggled to accept was the idea that a quantity we cannot count to could be
+          mathematically useful.
+        </p>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes" target="_new">Ren&eacute; Descartes</a> was one of
+          many mathematicians who found that he just could not make these perplexing quantities go away.
+          So in his frustration (and no doubt, a certain degree of irritation), he gave these numbers the rather
+          derogatory title of <a href="https://en.wikipedia.org/wiki/Imaginary_number#History"
+            target="_new">"imaginary"</a>
+          because to him, they did not represent anything "real".
+        </p>
+        <p>
+          It's unfortunate, but this name has stuck.
+        </p>
+        <h3>The <i>i</i>'s Have It</h3>
+        <table>
+          <tr>
+            <td style="vertical-align: top;">
+              <p>
+                Given that these numbers have been labelled "imaginary", and that it would be a pain to continually write
+                `sqrt (-1)` every time we want to refer to this quantity, we just use the letter `i`.
+              </p>
+              <p>
+                When we now multiply `i` by itself and increasing number of times, we get the following cycle of values:
+              </p>
+              <p>
+                `i^0 = 1`<br>
+                `i^1 = i`<br>
+                `i^2 = i xx i = -1`<br>
+                `i^3 = i xx i xx i = -i`<br>
+                `i^4 = i xx i xx i xx i = 1` (and we're back to one again)
+              </p>
+            </td>
+            <td>
+              <div id="imagRotBox" class="imagRotBox"></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>

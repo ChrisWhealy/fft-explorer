@@ -81,3 +81,11 @@ div.pythagorasBox {
   margin-right: auto;
   margin-bottom: 1.75em;
 }
+
+div.imagRotBox {
+  width: 400px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
