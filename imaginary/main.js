@@ -1,9 +1,25 @@
 JXG.COORDS_BY_USER = 1
 
+// Define axis properties
+let realTicks = {
+  insertTicks: false,
+  ticksDistance: 0.2,
+  label: 'Real',
+}
+let imagTicks = {
+  insertTicks: false,
+  ticksDistance: 0.2,
+  label: 'Imaginary',
+}
+
 // Define phase shift graph
 let imagRotBox = JXG.JSXGraph.initBoard('imagRotBox', {
   boundingbox: [-1.25, 1.25, 1.25, -1.25],
   axis: true,
+  defaultAxes: {
+    x: { ticks: realTicks },
+    y: { ticks: imagTicks },
+  },
   showCopyright: false,
   showNavigation: false,
 })
