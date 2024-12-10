@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <td class="description">
+        <h2>Complex Numbers</h2>
+        <table>
+          <tr>
+            <td style="vertical-align: top;">
+              <p>
+                When have seen that when you raise `i` to successive integer powers, we get a cycle of values
+                `1 -> i -> -1 -> -i -> 1 -> i &hellip;`
+              </p>
+              <p>
+                When plotted on a graph, these values rotate in an anti-clockwise direction.
+                However, the graph being used here represents a plane where the coordinates for every point are composed
+                from both a real number (plotted horizontally on the X axis) and an imaginary number (plotted vertically
+                on the Y axis).
+              </p>
+              <p>
+                This is called the <b><i>"Complex Plane"</i></b>, and any point on the complex plane is identified by a
+                <b><i>Complex Number</i></b>
+              </p>
+              <p>
+                The simplest way to represent the above set of rotating values is to use (X,Y) coordinates like this:
+              </p>
+              <table>
+                <tr>
+                  <td>`i^0 =`</td>
+                  <td>`(1,0)`</td>
+                  <td>or `1 + 0i`</td>
+                </tr>
+                <tr>
+                  <td>`i^1 =`</td>
+                  <td>`(0,1)`</td>
+                  <td>or `0 + i`</td>
+                </tr>
+                <tr>
+                  <td>`i^2 =`</td>
+                  <td>`(-1,0)`</td>
+                  <td>or `-1 + 0i`</td>
+                </tr>
+                <tr>
+                  <td>`i^3 =`</td>
+                  <td>`(0,-1)`</td>
+                  <td>or `0 - i`</td>
+                </tr>
+                <tr>
+                  <td>`i^4 =`</td>
+                  <td>`(1,0)`</td>
+                  <td>or `1 + 0i`</td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <div id="imagRotBox" class="imagRotBox"></div>
+            </td>
+          </tr>
+        </table>
+        <h2>Different Ways to Represent a Complex Number</h2>
+        <h3>Cartesian (or Rectangular) Form</h3>
+        <p>
+          When a complex number is expressed as a pair of values such as `4 + 3i`, we are identifying the point on the
+          complex plane in terms an X,Y pair of coordinates.
+          In other words `4 + 3i` tells you to <i>"Start at the origin facing east, then take four steps forward, turn
+            90&deg; to the left, then take three more steps"</i>.
+        </p>
+        <p>
+          This representation is known as the Cartesian Form.
+        </p>
+        <h3>Polar Form</h3>
+        <p>
+          However, the Cartesian form always takes us along two sides of the triangle.
+          Couldn't we just walk in a straight line from the origin directly to the point?
+        </p>
+        <p>
+          We certainly can, but first we need to know both how far we should walk and in which direction.
+          (The convention here is that 0&deg; is the direction of the positive X axis, and positive rotation is
+          anti-clockwise).
+        </p>
+        <p>
+          Starting with the complex number `4 + 3i`, we know this describes a right-angled triangle with a base of
+          length `4` and a height of length `3`.
+          So using the theorem that Pythagoras did not discover, we know that the length of the hypotenuse will be the
+          square root of the sum of the other two lengths squared.
+        </p>
+        <table>
+          <tr>
+            <td>
+              <img src="/img/pythagoras.png" />
+            </td>
+            <td>&nbsp;</td>
+            <td style="vertical-align: top;">
+              <p>
+                `h = sqrt (4^2 + 3^2)`<br>
+                `h = sqrt (25)`<br>
+                `h = 5`
+              </p>
+              <p>So, starting from the origin, we know we have to walk for a distance of `5` steps.
+                We should also bear in mind that all the relationships were using here are derived from the angles
+                formed inside a circle.
+                That means that the `5` steps we will be taking are along the radius of a circle.
+              </p>
+              <p>
+                So now we know the distance, but we must still calculate the direction.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <p>
+                The direction in which we need to walk can be calculated by remembering the acronym SOHCAHTOA.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="/img/tan-theta.png" />
+            </td>
+            <td>&nbsp;</td>
+            <td style="vertical-align: top;">
+              <p>
+                The last three letters "TOA" remind us that `tan(&theta;) = (opposite) / (adjacent)`
+              </p>
+              <p>
+                `tan(&theta;) = 3/4`<br>
+                `&theta; = arctan(3/4)`<br>
+                `&theta; = 36.87&deg;`<br>
+              </p>
+            </td>
+          </tr>
+        </table>
+        <p>
+          So the polar coordinates for the point `4 + 3i` are `(5, 36.87&deg;)`
+        </p>
+        <h3>Exponential Form</h3>
+        <p>
+          Lastly, we have the exponential form that can be derived directly from Euler's Formula.
+        </p>
+        <p>
+          `e^(i&theta;) = cos(&theta;) + i sin(&theta;)`
+        </p>
+        <p>
+          Remembering what we said earlier about circles, we should remember that the expression of Euler's Formula
+          shown above is for a circle with a radius of `1`.
+          To extend this formula to handle a circle of any radius `r`, we must include a term for the radius:
+        </p>
+        <p>
+          `r e^(i&theta;) = r(cos(&theta;) + i sin(&theta;))`
+        </p>
+        <p>
+          From the calculation above, we know that `&theta; = 36.87&deg;`, and our radius is `5`, so `4 + 3i` expressed
+          in exponential form is `5e^(36.87&deg;i)`
+        </p>
+        <p>
+          Lastly, we should also note that the angle has been expressed in degrees rather than the more usual radians.
+        </p>
+        <p>
+          To convert to radians, we must multiply the angle in degrees by `pi` then divide by `180`.
+        </p>
+        <p>
+          `(36.87&deg; xx pi)/ 180 = 0.644`
+        </p>
+        <p>
+          So using radians, `4 + 3i` expressed in exponential form is `5e^(0.644i)`
+        </p>
+        <div id="complexBox" class="complexBox"></div>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>
