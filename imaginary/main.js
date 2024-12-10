@@ -25,11 +25,6 @@ let imagRotBox = JXG.JSXGraph.initBoard('imagRotBox', {
 })
 imagRotBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-let right = imagRotBox.create('point', [1, 0], { visible: false })
-let up = imagRotBox.create('point', [0, 1], { visible: false })
-let left = imagRotBox.create('point', [-1, 0], { visible: false })
-let down = imagRotBox.create('point', [0, -1], { visible: false })
-
 let p = imagRotBox.create(
   'point',
   [1, 0],
@@ -38,10 +33,10 @@ let p = imagRotBox.create(
 let arrow = imagRotBox.create('arrow', [[0, 0], p])
 
 let steps = [
-  { point: right, value: "1" },
-  { point: up, value: "i" },
-  { point: left, value: "-1" },
-  { point: down, value: "-i" }
+  { point: imagRotBox.create('point', [1, 0], { visible: false }), value: "1" },
+  { point: imagRotBox.create('point', [0, 1], { visible: false }), value: "i" },
+  { point: imagRotBox.create('point', [-1, 0], { visible: false }), value: "-1" },
+  { point: imagRotBox.create('point', [0, -1], { visible: false }), value: "-i" }
 ]
 let rotation = 0
 
