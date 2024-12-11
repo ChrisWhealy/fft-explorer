@@ -82,7 +82,7 @@
           `e^(ix) = 1 + ix + (ix)^2/(2!) + (ix)^3/(3!) + (ix)^4/(4!) + (ix)^5/(5!) + ...`
         </p>
         <p>
-          now reduce the various powers of `i` down to their simplest form
+          Now reduce the various powers of `i` down to their simplest form
         </p>
         <p>
           `e^(ix) = 1 + ix - x^2/(2!) - (ix^3)/(3!) + x^4/(4!) + (ix^5)/(5!) + ...`
@@ -90,7 +90,10 @@
         <p>
           We can now see that all the terms raised to an even power have no `i` in them, and all the terms raised to an
           odd power do have an `i`.
-          So we can rearrange the terms to group all the odd powers together, then factor out the `i`
+        </p>
+        <p>
+          Next, we can rearrange the terms to group all the even and odd powers together, then from the odd-power terms,
+          we can factor out the `i`:
         </p>
         <p>
           `e^(ix) = (1 - x^2/(2!) + x^4/(4!) - &hellip;) + i(x - (x^3)/(3!) + (x^5)/(5!) - &hellip;)`
@@ -129,14 +132,13 @@
           `e^(i pi) = cos(pi) + i sin(pi)`
         </p>
         <p>
-          Firstly, `cos(pi) = -1` and secondly, `sin(pi) = 0`, so we get
+          Firstly, `cos(pi) = -1` and secondly, `sin(pi) = 0`, so the `sin` term disappears and we get:
         </p>
         <p>
-          `e^(i pi) = -1 + i xx 0`<br>
-          `e^(i pi) = -1`<br>
+          `e^(i pi) = -1`
         </p>
         <p>
-          Now add `1` to both sides, and we get the famous Euler identity
+          Now add `1` to both sides, and we get Euler's famous identity:
         </p>
         <p style="text-align: center;">
           `e^(i pi) + 1 = 0`
