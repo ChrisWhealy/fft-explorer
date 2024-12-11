@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <td class="description">
+        <h2>Arithmetic with Complex Numbers</h2>
+        <h3>Addition</h3>
+        <p>
+          Adding two complex numbers such as `4 + 3i` and `1 - 2i` is simply a matter of adding the real parts together,
+          then adding the imaginary parts.
+        </p>
+        <table class="eq-sequence">
+          <tr>
+            <td></td>
+            <td>`(4 + 3i) + (1 - 2i)`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`(4 + 1) + (3i + -2i)`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`5 + i`</td>
+          </tr>
+        </table>
+
+        <div id="complexAddBox" class="complexAddBox"></div>
+
+        <h3>Subtraction</h3>
+        <p>
+          Subtracting two complex numbers such as `4 + 3i` and `1 - 2i` is simply a matter of subtracting the second
+          real part from the first real part, then subtracting the second imaginary part from the first.
+        </p>
+        <table class="eq-sequence">
+          <tr>
+            <td></td>
+            <td>`(4 + 3i) - (1 - 2i)`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`(4 - 1) + (3i - -2i)`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`3 + 5i`</td>
+          </tr>
+        </table>
+
+        <div id="complexSubtractBox" class="complexSubtractBox"></div>
+
+        <h3>Multiplication</h3>
+        <p>
+          Multiplying two complex numbers such `4 + 3i` and `1 - 2i` is a little more involved because we must follow
+          the FOIL rule.
+        </p>
+        <table>
+          <tr>
+            <td style="vertical-align: top;">
+              <p>
+                FOIL is an acronym that helps you remember the order in which terms are to be multiplied and then added.
+              </p>
+              <table class="eq-sequence">
+                <tr>
+                  <td></td>
+                  <td>`(3 + 2i) * (1 - 2i)`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>`(3 * 1) + (3 * -2i) + (2i * 1) + (2i * -2i)`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>`3 - 6i + 2i - 4i^2`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>`3 - 6i + 2i + 4`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>`7 - 4i`</td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <img src="/img/FOIL.png" />
+            </td>
+          </tr>
+        </table>
+        <div id="complexMultBox" class="complexMultBox"></div>
+
+        <h3>Division</h3>
+        <p>
+          The basic problem with complex division is that our rules of arthmetic do not tell us how many times `sqrt
+          (-1)` divides into a real number.
+          So if we encounter a term such as `3/(2i)`, then we're completely stuck.
+          Like Descartes all those years ago, we're stuck with a pesky `sqrt (-1)` and can go no further.
+        </p>
+        <p>
+          The trick here is to perform the division in such a way that we are left only with a real value in the
+          denominator.
+        </p>
+        <p>
+          But if we have a division such as `(4 + 3i)/(2-i)`, how do we go about getting rid of the `-i` in `2-i`?
+        </p>
+        <h4>The Complex Conjugate</h4>
+        <p>
+          When you multiply a complex number by its conjugate, all the `i`'s go away!
+          And it is formed simply by reversing the sign of the imaginary term.
+        </p>
+        <p>
+          So the complex conjugate of `3+4i` is `3-4i`.
+        </p>
+        <p>
+          Let's see what happens when we multiply `3+4i` by its conjugate `3-4i`
+        </p>
+        <p>
+          By applying the FOIL rule, we get:
+        </p>
+        <table class="eq-sequence">
+          <tr>
+            <td></td>
+            <td>`(3+4i) * (3-4i)`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`(3 * 3) + (3 * -4i) + (3 * 4i) + (4i * -4i)`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`9 - 12i + 12i - 16i^2`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`9 + 16`</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`25`</td>
+          </tr>
+        </table>
+        <p>
+          Ok, that's nice, but how does it help us with division?
+        </p>
+        <p>
+          The trick is to multiply both the numerator and denominator by the conjugate of the denominator:
+        </p>
+        <p>
+          `(4+3i)/(2-i) xx (2+i)/(2+i)`
+        </p>
+        <p>
+          This has the same effect as multiplying by `1`, but we're doing so in a way that removes the imaginary term
+          from the denominator leaving only the real term.
+        </p>
+        <table class="eq-sequence">
+          <tr>
+            <td></td>
+            <td>`(4+3i) / (2-i)`</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`((4+3i) xx (2+i)) / ((2-i) xx (2+i))`</td>
+            <td>Multiply numerator and denominator by the complex conjugate of the denominator</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`((4+3i) xx (2+i)) / 5`</td>
+            <td>Reduce the denominator to a real number</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`(8 + 4i + 6i + 3i^2) / 5`</td>
+            <td>Apply the FOIL rule to the numerator</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`(5 + 10i) / 5`</td>
+            <td>Replace all occurrences of `i^2` with `-1`, then gather the real and imaginary terms</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`(5(1 + 2i)) / 5`</td>
+            <td>Remove a factor of `5` from the numerator</td>
+          </tr>
+          <tr>
+            <td>`=>`</td>
+            <td>`1 + 2i`</td>
+            <td>The answer</td>
+          </tr>
+        </table>
+        <br>
+
+        <div id="complexDivBox" class="complexDivBox"></div>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>

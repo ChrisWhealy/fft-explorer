@@ -28,6 +28,10 @@ td.column {
   border-left: 1px solid black;
 }
 
+table.eq-sequence td {
+  padding: 5px;
+}
+
 .config_label {
   text-align: right;
   padding-right: 6px;
@@ -91,6 +95,38 @@ div.imagRotBox {
 }
 
 div.complexBox {
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
+
+div.complexAddBox {
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
+
+div.complexSubtractBox {
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
+
+div.complexMultBox {
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
+
+div.complexDivBox {
   width: 600px;
   height: 600px;
   margin-left: auto;
