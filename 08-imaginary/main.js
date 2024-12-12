@@ -1,5 +1,3 @@
-JXG.COORDS_BY_USER = 1
-
 // Define axis properties
 let realTicks = {
   insertTicks: false,

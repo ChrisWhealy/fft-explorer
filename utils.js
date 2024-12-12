@@ -22,3 +22,41 @@ const circleData = [...Array(360)].map((_, degrees) => ({
   x: Math.cos(deg2Rad(degrees)),
   y: Math.sin(deg2Rad(degrees))
 }))
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Return JXG point and arrow option objects
+const arrowStyle = (colourArg, dashArg) => ({
+  strokeColor: colourArg || 'blue',
+  strokeWidth: 1,
+  dash: dashArg || 0,
+})
+
+const pointStyle = (colourArg, labelArg, fontSizeArg, isFixed) => ({
+  face: 'o',
+  fixed: !!isFixed,
+  color: colourArg || 'blue',
+  name: labelArg || '',
+  fontSize: fontSizeArg || 16,
+})
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Complex arithmetic
+const complexMult = (pointA, pointB, useConjugateOfPointB) => {
+  let bY = useConjugateOfPointB ? pointB.Y() * -1 : pointB.Y()
+
+  return {
+    x: pointA.X() * pointB.X() - pointA.Y() * bY,
+    y: pointA.X() * bY + pointA.Y() * pointB.X()
+  }
+}
+
+const complexConjProduct = point => point.X() * point.X() + point.Y() * point.Y()
+const complexDiv = (pointA, pointB) => {
+  let num = complexMult(pointA, pointB, true)
+  let denom = complexConjProduct(pointB)
+
+  return {
+    x: num.x / denom,
+    y: num.y / denom
+  }
+}
