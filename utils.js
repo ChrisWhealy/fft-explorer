@@ -40,6 +40,12 @@ const pointStyle = (colourArg, labelArg, fontSizeArg, isFixed) => ({
 })
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Sine and cosine from value in degrees
+const sineDegrees = x => Math.sin(x / DEGREES_PER_RADIAN)
+const cosineDegrees = x => cosineDegrees(x, 0)
+const cosineDegreesWithOffset = (x, offset) => Math.cos((x + offset) % 360 / DEGREES_PER_RADIAN)
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Complex arithmetic
 const complexMult = (pointA, pointB, useConjugateOfPointB) => {
   let bY = useConjugateOfPointB ? pointB.Y() * -1 : pointB.Y()

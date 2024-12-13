@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <th>
+        <h1>Convolution</h1>
+      </th>
+    </tr>
+    <tr>
+      <td class="description">
+        <p>
+          <b>To Convole</b>: from the Latin <i>convolvere</i> meaning <i>con</i> = "with" + <i>volvere</i> = "to roll,
+          twist or rotate".
+        </p>
+        <p>
+          Therefore, to "convole" literally means to "roll or twist together".
+        </p>
+        <p>
+          In the case of audio processing, convolution is the process of examining a signal in order to discover which
+          individual sine waves it is composed from, and what contribution each of those sine waves make.
+        </p>
+        <p>
+          This is done by taking the signal and "rolling it together" with a set of test waves (over some range of
+          frequencies) in such a way that the output tells us to what degree the test wave is present in the signal.
+        </p>
+        <p>
+          If the convolution process generates only a small output, then we can conclude that the signal does not
+          contain a component of this frequency.
+          But if the convolution generates a large output, this tells us not only that we have discovered one of the
+          frequencies present in the sgnal, but also the phase relationship of the test wave to the signal.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <h2>Measuring Out-of-Phaseness</h2>
+        <p>
+          Assuming that "out-of-phaseness" is even a word, we will start with the simplest case in which the signal and
+          test wave have exactly the same frequency of 5Hz.
+        </p>
+        <p>
+          Our signal is the green wave and the phase shift slider controls a blue test wave.
+        </p>
+        <p>
+          As you move the slider left and right, you are shifting the phase of the blue test wave relative to the
+          signal.
+          When the slider is at 0&deg;, the two waves are "in phase" (I.E. they line up perfectly), but when the slider
+          is at 180&deg;, the two waves are in anti-phase (I.E. they are perfectly mis-aligned).
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <div id="wavesBox" class="wavesBox"></div>
+        <p>
+          In order to quantify the degree of misalignment between these two waves, we have to "convolve" the signal with
+          the test wave.
+          What this means is that for each point from 0&deg; to 360&deg; on the test wave, we will take its value and
+          multiply it by the corresponding value on the signal wave.
+        </p>
+        <p>
+          The result of this multiplication is plotted below.
+        </p>
+        <p>
+          As you can see, we get another sine wave that always has an amplitude of `1`, but whose position swings both
+          left and right, and up and down depending on the degree of phase shift.
+        </p>
+        <p>
+        <div id="convBox" class="convBox"></div>
+        </p>
+        <p>
+          We now need to perform the final step in the calculation and work out the area under the graph shaded in red.
+        </p>
+        <p>
+          Some of the red shaded area is above the X axis, so that is treated as a positive value, and some of the
+          shaded area is below the X axis, so that is treated as a negative value.
+          When we add up these all positive and negative values, we get a total that varies from `+180` to `-180`.
+        </p>
+        <p>
+          The pseudo-code to calculate this area looks like this:
+        </p>
+        <pre><code class="language-javascript" id="beautifiedCode"></code></pre>
+        <p>
+          Effectively, this code calculates the integral of the convolution curve from 0&deg; to 360&deg;
+        </p>
+
+        <h2>But What Does This Tell Us?</h2>
+        <p>
+          In this simplified scenario, we started with a signal and a test wave that have exactly the same frequency, so
+          we already know that our signal contains the test wave.
+          However, what we have also established is the phase relationship between the test wave and the signal.
+        </p>
+        <p>
+          The area under the convolution curve reaches its maximum value of `+180` at a phase shift of 0&deg;.
+          So not only have we discovered what frequency the signal contains, but we have also discovered the phase of
+          that content.
+        </p>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+  <script>
+    const originalCode = `
+let area = 0
+
+for (x=0; x<360; x++) {
+  area += testWave.y(x) * signalWave.y(x)
+}`
+    const beautifiedCode = js_beautify(originalCode, {
+      indent_size: 2,
+      space_in_empty_paren: true,
+      brace_style: 'collapse'
+    })
+
+    const beautifiedCodeElement = document.getElementById('beautifiedCode')
+    beautifiedCodeElement.textContent = beautifiedCode
+    Prism.highlightElement(beautifiedCodeElement)
+  </script>
+</body>
+
+</html>

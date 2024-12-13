@@ -133,3 +133,19 @@ div.complexDivBox {
   margin-right: auto;
   margin-bottom: 1.75em;
 }
+
+div.wavesBox {
+  width: 1000px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
+
+div.convBox {
+  width: 1000px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.75em;
+}
