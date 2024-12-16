@@ -23,7 +23,7 @@
   <table class="page-table">
     <tr>
       <th>
-        <h1>Convolution</h1>
+        <h1>Convolution: The Simplest Case</h1>
       </th>
     </tr>
     <tr>
@@ -36,19 +36,13 @@
           Therefore, to "convolve" literally means to "roll or twist together".
         </p>
         <p>
-          In the case of audio processing, convolution is the process of examining a signal in order to discover which
-          individual sine waves it is composed from, and what contribution each of those sine waves make.
+          In the case of audio processing, convolution is the process of examining a signal in order to discover not
+          only the individual sine waves from which it is composed, but also what contribution each of those sine waves
+          make in terms of phase and amplitude.
         </p>
         <p>
           This is done by taking the signal and "rolling it together" with a set of test waves (over some range of
           frequencies) in such a way that the output tells us to what degree the test wave is present in the signal.
-        </p>
-        <p>
-          If the convolution process generates a very small output, then we can conclude that the signal does not
-          contain a component of this frequency.
-          But if the convolution generates a large output, then we know that not only have we discovered one of the
-          frequencies present in the signal, but we have also discovered the phase relationship of the test wave to the
-          signal.
         </p>
       </td>
     </tr>
@@ -57,7 +51,7 @@
         <h2>Measuring Out-of-Phaseness</h2>
         <p>
           Assuming that "out-of-phaseness" is even a word, we will start with the simplest case in which the signal and
-          test wave have exactly the same frequency of 5Hz.
+          test wave both have exactly the same frequency (5Hz), amplitude and phase alignment.
         </p>
         <p>
           Our signal is the green wave and the phase shift slider controls a blue test wave.
@@ -68,20 +62,17 @@
           When the slider is at 0&deg;, the two waves are "in phase" (I.E. they line up perfectly), but when the slider
           is at 180&deg;, the two waves are in anti-phase (I.E. they are perfectly mis-aligned).
         </p>
-      </td>
-    </tr>
-    <tr>
-      <td class="description">
-        <div id="wavesBox" class="wavesBox"></div>
         <p>
           In order to quantify the degree of misalignment between these two waves, we have to "convolve" the signal with
           the test wave.
           What this means is that for each point from 0&deg; to 360&deg; on the test wave, we will take its value and
           multiply it by the corresponding value on the signal wave.
         </p>
-        <p>
-          The result of this multiplication is plotted below.
-        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <div id="wavesBox" class="wavesBox"></div>
         <p>
           As you can see, we get another sine wave that always has an amplitude of `1`, but whose position swings both
           left and right, and up and down depending on the degree of phase shift.
@@ -90,37 +81,37 @@
         <div id="convBox" class="convBox"></div>
         </p>
         <p>
-          We now need to perform the final step in the calculation and work out the area under the graph shaded in red.
+          The final step of the calculation is work out the area under the graph shaded in red.
+          The red shaded area straddles the X axis, so the area above cancels out the area below.
         </p>
         <p>
-          Some of the red shaded area is above the X axis, so that is treated as a positive value, and some of the
-          shaded area is below the X axis, so that is treated as a negative value.
-          When we add up these all positive and negative values, we get a total that varies from `+180` to `-180`.
+          When we add up these areas, we get a total that varies depending on the phase of the test wave relative to the signal.
         </p>
         <p>
+        <div id="areaBox" class="convBox"></div>
+        </p>
+        <!-- <p>
           The pseudo-code to calculate this area looks like this:
         </p>
-        <pre><code class="language-javascript" id="beautifiedCode"></code></pre>
+        <pre><code class="language-javascript" id="beautifiedCode"></code></pre> -->
         <p>
           Effectively, this code calculates the integral of the convolution curve from 0&deg; to 360&deg;
         </p>
 
         <h2>But What Does This Tell Us?</h2>
         <p>
-          In this simplified scenario, we started with a signal and a test wave that have exactly the same frequency, so
-          we already know that our signal contains the test wave.
-          However, what we have also established is the phase relationship between the test wave and the signal.
+          What we learn from this is that when the area under the graph reaches a maximum, not only have we discovered
+          that the signal contains the test frequency, but we have also discovered the phase relationship between these
+          two waves.
         </p>
         <p>
-          The area under the convolution curve reaches its maximum value of `+180` at a phase shift of 0&deg;.
-          So not only have we discovered what frequency the signal contains, but we have also discovered the phase of
-          that content.
+          In this case, the maximum area of `180` is reached at `0&deg;` of phase shift.
         </p>
       </td>
     </tr>
   </table>
   <script type="text/javascript" src="./main.js"></script>
-  <script>
+  <!-- <script>
     const originalCode = `
 let area = 0
 
@@ -136,7 +127,7 @@ for (x=0; x<360; x++) {
     const beautifiedCodeElement = document.getElementById('beautifiedCode')
     beautifiedCodeElement.textContent = beautifiedCode
     Prism.highlightElement(beautifiedCodeElement)
-  </script>
+  </script> -->
 </body>
 
 </html>

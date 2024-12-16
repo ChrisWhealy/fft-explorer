@@ -1,8 +1,11 @@
 const SLIDER_MAX = 360
 const FREQUENCY = 5
+const TXT_HEIGHT_PHASE = 1.25
 
-// Define convolve waves graph
 angleTicks.ticksDistance = 90
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Define waves graph
 let wavesBox = JXG.JSXGraph.initBoard('wavesBox', {
   boundingbox: [-15, 1.50, SLIDER_MAX, -1.25],
   axis: true,
@@ -12,24 +15,12 @@ let wavesBox = JXG.JSXGraph.initBoard('wavesBox', {
 })
 wavesBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-let sliderText = wavesBox.create('text', [10, 1.25, 'Phase shift']);
-let cosineSlider = wavesBox.create(
-  'slider',
-  [[45, 1.25], [270, 1.25], [0, 0, 360]],
-  { snapWidth: 1, precision: 0 }
-)
+wavesBox.create('text', [10, TXT_HEIGHT_PHASE, 'Phase shift']);
+let phaseSlider = wavesBox.create('slider', [[45, TXT_HEIGHT_PHASE], [270, TXT_HEIGHT_PHASE], [0, 0, 360]], { snapWidth: 1, precision: 0 })
 
-// Draw the sine and cosine waves
-let cosine = wavesBox.create(
-  'functiongraph',
-  [x => cosineDegreesWithOffset(FREQUENCY * x, cosineSlider.Value() - 90)],
-  { size: 1, name: 'B', strokeColor: 'blue' }
-)
-let sine = wavesBox.create(
-  'functiongraph',
-  [x => sineDegrees(FREQUENCY * x)],
-  { size: 1, name: 'A', strokeColor: 'green' }
-)
+// Define the signal and test waves
+let testWave = wavesBox.create('functiongraph', [x => sineDegrees(FREQUENCY * x + phaseSlider.Value())], { strokeColor: 'blue' })
+let signal = wavesBox.create('functiongraph', [x => sineDegrees(FREQUENCY * x)], { strokeColor: 'green' })
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Define convolution graph
@@ -43,33 +34,68 @@ let convBox = JXG.JSXGraph.initBoard('convBox', {
 convBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
 // Convolution wave is initially undefined
-let convWave = convBox.create(
-  'curve',
-  [[], []],
-  { strokeWidth: 1, strokeColor: 'red', fillColor: 'red', fillOpacity: 0.25 }
-)
+let convWave = convBox.create('curve', [[], []], { strokeColor: 'red', fillColor: 'red', fillOpacity: 0.25 })
 
-// Compute convolution
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Define convolution graph
+let areaBox = JXG.JSXGraph.initBoard('areaBox', {
+  boundingbox: [-15, 220, SLIDER_MAX, -220],
+  axis: true,
+  defaultAxes: { x: { ticks: angleTicks } },
+  showCopyright: false,
+  showNavigation: false,
+})
+areaBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
+
 let area = 0
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Compute convolution
+let areaMemo = []
+let prevX, prevArea
+
 const updateConvolution = () => {
+  let psv = phaseSlider.Value()
   area = 0
+
   convWave.dataX = []
   convWave.dataY = []
 
+  // Calculate convolution area for test wave at current phase shift
   for (let x = 0; x <= SLIDER_MAX; x++) {
-    let convHeight = sine.Y(x) * cosine.Y(x)
+    let convHeight = signal.Y(x) * testWave.Y(x)
+
     convWave.dataX.push(x)
     convWave.dataY.push(convHeight)
     area += convHeight
   }
 
+  // Remember area for current phase shift positino
+  areaMemo[psv] = area
+
+  // Plot change in convolution area
+  if (psv > 0 && areaMemo[psv] !== undefined) {
+    areaBox.create('line', [[prevX, prevArea], [psv, area]], sineLineStyle)
+  }
+
+  prevX = psv
+  prevArea = areaMemo[psv]
+
   convBox.update()
+  areaBox.update()
 }
 
 updateConvolution()
 
-let areaText = convBox.create('text', [10, 1.25, () => `Area under graph = ${area.toPrecision(3)}`])
+let areaText = convBox.create('text', [10, TXT_HEIGHT_PHASE, () => `Area under graph = ${area.toPrecision(3)}`])
+let areaPoint = areaBox.create(
+  'point',
+  [() => phaseSlider.Value(), () => area],
+  {
+    color: 'blue',
+    name: () => (Math.trunc(area * 10000) / 10000).toPrecision(5),
+    fontSize: 16
+  })
 
 // Update convolution when the slider changes
-cosineSlider.on('drag', updateConvolution)
+phaseSlider.on('drag', updateConvolution)

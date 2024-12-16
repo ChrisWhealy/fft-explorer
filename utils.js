@@ -41,9 +41,8 @@ const pointStyle = (colourArg, labelArg, fontSizeArg, isFixed) => ({
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Sine and cosine from value in degrees
-const sineDegrees = x => Math.sin(x / DEGREES_PER_RADIAN)
-const cosineDegrees = x => cosineDegrees(x, 0)
-const cosineDegreesWithOffset = (x, offset) => Math.cos((x + offset) % 360 / DEGREES_PER_RADIAN)
+const sineDegrees = x => Math.sin(x % 360 / DEGREES_PER_RADIAN)
+const cosineDegrees = x => Math.cos(x % 360 / DEGREES_PER_RADIAN)
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Complex arithmetic
