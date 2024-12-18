@@ -2,7 +2,6 @@
 <html>
 
 <head>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
   <link rel="stylesheet" type="text/css" href="/css/common.css" />
   <script>
@@ -10,9 +9,6 @@
       loader: { load: ['input/asciimath', 'output/chtml'] }
     }
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
   <script type="text/javascript" src="/utils.js"></script>
@@ -22,12 +18,12 @@
 <body>
   <table class="page-table">
     <tr>
-      <th>
+      <th colspan="2">
         <h1>Convolution: The Simplest Case</h1>
       </th>
     </tr>
     <tr>
-      <td class="description">
+      <td class="description" colspan="2">
         <p>
           <b>To Convole</b>: from the Latin <i>convolvere</i> meaning <i>con</i> = "with" + <i>volvere</i> = "to roll,
           twist or rotate".
@@ -47,14 +43,22 @@
       </td>
     </tr>
     <tr>
-      <td class="description">
+      <td class="description" colspan="2">
         <h2>Measuring Out-of-Phaseness</h2>
         <p>
           Assuming that "out-of-phaseness" is even a word, we will start with the simplest case in which the signal and
           test wave both have exactly the same frequency (5Hz), amplitude and phase alignment.
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <h4>Signal + Test Wave</h4>
+        <div id="signalTestBox" class="signalTestBox"></div>
+      </td>
+      <td class="description" style="vertical-align: top;">
         <p>
-          Our signal is the green wave and the phase shift slider controls a blue test wave.
+          Our signal is the blue wave and the phase shift slider controls a red test wave.
         </p>
         <p>
           As you move the slider left and right, you are shifting the phase of the blue test wave relative to the
@@ -62,42 +66,43 @@
           When the slider is at 0&deg;, the two waves are "in phase" (I.E. they line up perfectly), but when the slider
           is at 180&deg;, the two waves are in anti-phase (I.E. they are perfectly mis-aligned).
         </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <h4>Convolution Curve</h4>
+        <div id="convBox" class="convBox"></div>
+      </td>
+      <td class="description" style="vertical-align: top;">
         <p>
           In order to quantify the degree of misalignment between these two waves, we have to "convolve" the signal with
           the test wave.
           What this means is that for each point from 0&deg; to 360&deg; on the test wave, we will take its value and
           multiply it by the corresponding value on the signal wave.
         </p>
+        <p>
+          As you can see, we get another sine wave whose amplitude matches the test wave's amplitude, but whose position
+          swings both up and down, and left and right depending on how far the test wave has been phase shifted.
+        </p>
       </td>
     </tr>
     <tr>
       <td class="description">
-        <div id="wavesBox" class="wavesBox"></div>
-        <p>
-          As you can see, we get another sine wave that always has an amplitude of `1`, but whose position swings both
-          left and right, and up and down depending on the degree of phase shift.
-        </p>
-        <p>
-        <div id="convBox" class="convBox"></div>
-        </p>
-        <p>
-          The final step of the calculation is work out the area under the graph shaded in red.
-          The red shaded area straddles the X axis, so the area above cancels out the area below.
-        </p>
-        <p>
-          When we add up these areas, we get a total that varies depending on the phase of the test wave relative to the signal.
-        </p>
-        <p>
+        <h4>Integral of Convolution Curve</h4>
         <div id="areaBox" class="convBox"></div>
-        </p>
-        <!-- <p>
-          The pseudo-code to calculate this area looks like this:
-        </p>
-        <pre><code class="language-javascript" id="beautifiedCode"></code></pre> -->
+      </td>
+      <td class="description" style="vertical-align: top;">
         <p>
-          Effectively, this code calculates the integral of the convolution curve from 0&deg; to 360&deg;
+          The final step is to calculate the area of the green shaded section under the convolution curve.
+          In other words, we need to calculate the integral of the convolution curve between 0&deg; and 360&deg;.
         </p>
-
+        <p>
+          This graph shows how the integral varies depending on the phase and amplitude of the test wave.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description" colspan="2">
         <h2>But What Does This Tell Us?</h2>
         <p>
           What we learn from this is that when the area under the graph reaches a maximum, not only have we discovered
@@ -111,23 +116,6 @@
     </tr>
   </table>
   <script type="text/javascript" src="./main.js"></script>
-  <!-- <script>
-    const originalCode = `
-let area = 0
-
-for (x=0; x<360; x++) {
-  area += testWave.y(x) * signalWave.y(x)
-}`
-    const beautifiedCode = js_beautify(originalCode, {
-      indent_size: 2,
-      space_in_empty_paren: true,
-      brace_style: 'collapse'
-    })
-
-    const beautifiedCodeElement = document.getElementById('beautifiedCode')
-    beautifiedCodeElement.textContent = beautifiedCode
-    Prism.highlightElement(beautifiedCodeElement)
-  </script> -->
 </body>
 
 </html>

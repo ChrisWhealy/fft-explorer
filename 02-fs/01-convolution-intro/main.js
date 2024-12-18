@@ -1,101 +1,151 @@
-const SLIDER_MAX = 360
 const FREQUENCY = 5
-const TXT_HEIGHT_PHASE = 1.25
+const UPPER_BOUND = 360
+const LOWER_BOUND = 0
+const SLIDER_LEFT_X = 15
+const SLIDER_RIGHT_X = 225
+const PHASE_SLIDER_Y = 1.75
+const AMP_SLIDER_Y = 1.5
+const GRAPH_MARGIN = 15
+
+let cumulativeIntegral = 0
+let integralMax = 0
+let integralMin = 0
 
 angleTicks.ticksDistance = 90
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Define waves graph
-let wavesBox = JXG.JSXGraph.initBoard('wavesBox', {
-  boundingbox: [-15, 1.50, SLIDER_MAX, -1.25],
+// ---------------------------------------------------------------------------------------------------------------
+// Board 1: Signal and Test Waves
+const sigTestBox = JXG.JSXGraph.initBoard('signalTestBox', {
+  boundingbox: [
+    LOWER_BOUND - GRAPH_MARGIN,
+    2,
+    UPPER_BOUND + GRAPH_MARGIN,
+    -2
+  ],
   axis: true,
   defaultAxes: { x: { ticks: angleTicks } },
-  showCopyright: false,
   showNavigation: false,
+  showCopyright: false,
 })
-wavesBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
+sigTestBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-wavesBox.create('text', [10, TXT_HEIGHT_PHASE, 'Phase shift']);
-let phaseSlider = wavesBox.create('slider', [[45, TXT_HEIGHT_PHASE], [270, TXT_HEIGHT_PHASE], [0, 0, 360]], { snapWidth: 1, precision: 0 })
+// Sliders for signal amplitude and test phase and amplitude
+const testAmpSlider = sigTestBox.create(
+  'slider',
+  [
+    [SLIDER_LEFT_X, AMP_SLIDER_Y],
+    [SLIDER_RIGHT_X, AMP_SLIDER_Y],
+    [0, 1, 1]
+  ],
+  {
+    name: 'Test Wave Amplitude',
+    snapWidth: 0.01,
+  }
+)
+const testPhaseSlider = sigTestBox.create(
+  'slider',
+  [
+    [SLIDER_LEFT_X, PHASE_SLIDER_Y],
+    [SLIDER_RIGHT_X, PHASE_SLIDER_Y],
+    [LOWER_BOUND, 0, UPPER_BOUND]
+  ],
+  {
+    name: 'Test Wave Phase',
+    snapWidth: 0.1,
+  }
+)
 
-// Define the signal and test waves
-let testWave = wavesBox.create('functiongraph', [x => sineDegrees(FREQUENCY * x + phaseSlider.Value())], { strokeColor: 'blue' })
-let signal = wavesBox.create('functiongraph', [x => sineDegrees(FREQUENCY * x)], { strokeColor: 'green' })
+// Signal sine wave
+const signalWave = sigTestBox.create('functiongraph', [x => sineDegrees(FREQUENCY * x)], { strokeColor: 'blue' })
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Define convolution graph
-let convBox = JXG.JSXGraph.initBoard('convBox', {
-  boundingbox: [-15, 1.50, SLIDER_MAX, -1.25],
+// Test sine wave
+const testWave = sigTestBox.create(
+  'functiongraph',
+  [x => testAmpSlider.Value() * sineDegrees(FREQUENCY * (x + testPhaseSlider.Value()))],
+  { strokeColor: 'red' }
+)
+
+// ---------------------------------------------------------------------------------------------------------------
+// Board 2: Convolution Graph
+const convBox = JXG.JSXGraph.initBoard('convBox', {
+  boundingbox: [
+    LOWER_BOUND - GRAPH_MARGIN,
+    1.1,
+    UPPER_BOUND + GRAPH_MARGIN,
+    -1.1
+  ],
   axis: true,
   defaultAxes: { x: { ticks: angleTicks } },
-  showCopyright: false,
   showNavigation: false,
+  showCopyright: false,
 })
 convBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-// Convolution wave is initially undefined
-let convWave = convBox.create('curve', [[], []], { strokeColor: 'red', fillColor: 'red', fillOpacity: 0.25 })
+const convolutionGraph = convBox.create('curve', [[], []], {
+  strokeColor: 'green',
+  name: 'Convolution',
+  fillColor: 'green',
+  fillOpacity: 0.25,
+})
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Define convolution graph
-let areaBox = JXG.JSXGraph.initBoard('areaBox', {
-  boundingbox: [-15, 220, SLIDER_MAX, -220],
+// ---------------------------------------------------------------------------------------------------------------
+// Board 3: Integral of Convolution
+const areaBox = JXG.JSXGraph.initBoard('areaBox', {
+  boundingbox: [
+    LOWER_BOUND - GRAPH_MARGIN,
+    (UPPER_BOUND / 2) + GRAPH_MARGIN,
+    UPPER_BOUND + GRAPH_MARGIN,
+    (UPPER_BOUND / -2) - GRAPH_MARGIN
+  ],
   axis: true,
   defaultAxes: { x: { ticks: angleTicks } },
-  showCopyright: false,
   showNavigation: false,
+  showCopyright: false,
 })
 areaBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-let area = 0
+let areaPoint = areaBox.create(
+  'point',
+  [() => testPhaseSlider.Value(), () => cumulativeIntegral],
+  {
+    color: 'blue',
+    name: () => cumulativeIntegral,
+    fontSize: 16
+  })
+areaBox.create('text', [293, 140, () => `Max: ${integralMax.toPrecision(5)}`], { fontSize: 15 })
+areaBox.create('text', [295, 120, () => `Min: ${integralMin.toPrecision(5)}`], { fontSize: 15 })
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Compute convolution
-let areaMemo = []
-let prevX, prevArea
+// ---------------------------------------------------------------------------------------------------------------
+// Update Convolution and Integral Graphs
+const updateGraphs = () => {
+  let convolutionHeight = 0
 
-const updateConvolution = () => {
-  let psv = phaseSlider.Value()
-  area = 0
+  cumulativeIntegral = 0
+  convolutionGraph.dataX = []
+  convolutionGraph.dataY = []
 
-  convWave.dataX = []
-  convWave.dataY = []
-
-  // Calculate convolution area for test wave at current phase shift
-  for (let x = 0; x <= SLIDER_MAX; x++) {
-    let convHeight = signal.Y(x) * testWave.Y(x)
-
-    convWave.dataX.push(x)
-    convWave.dataY.push(convHeight)
-    area += convHeight
+  for (let x = LOWER_BOUND; x <= UPPER_BOUND; x++) {
+    convolutionHeight = signalWave.Y(x) * testWave.Y(x)
+    convolutionGraph.dataX.push(x)
+    convolutionGraph.dataY.push(convolutionHeight)
+    cumulativeIntegral += convolutionHeight
   }
 
-  // Remember area for current phase shift positino
-  areaMemo[psv] = area
-
-  // Plot change in convolution area
-  if (psv > 0 && areaMemo[psv] !== undefined) {
-    areaBox.create('line', [[prevX, prevArea], [psv, area]], sineLineStyle)
-  }
-
-  prevX = psv
-  prevArea = areaMemo[psv]
+  cumulativeIntegral = Math.trunc(cumulativeIntegral * 1000) / 1000
+  integralMax = Math.max(integralMax, cumulativeIntegral)
+  integralMin = Math.min(integralMin, cumulativeIntegral)
 
   convBox.update()
   areaBox.update()
 }
 
-updateConvolution()
+// Update graphs when sliders are moved
+testAmpSlider.on('drag', () => {
+  integralMax = 0
+  integralMin = 0
+  updateGraphs()
+})
+testPhaseSlider.on('drag', updateGraphs)
 
-let areaText = convBox.create('text', [10, TXT_HEIGHT_PHASE, () => `Area under graph = ${area.toPrecision(3)}`])
-let areaPoint = areaBox.create(
-  'point',
-  [() => phaseSlider.Value(), () => area],
-  {
-    color: 'blue',
-    name: () => (Math.trunc(area * 10000) / 10000).toPrecision(5),
-    fontSize: 16
-  })
-
-// Update convolution when the slider changes
-phaseSlider.on('drag', updateConvolution)
+// Initial graph update
+updateGraphs()
