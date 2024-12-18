@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <th colspan="2">
+        <h1>Convolution</h1>
+      </th>
+    </tr>
+    <tr>
+      <td class="description" colspan="2">
+        <h2>When the Test Wave Is Not Contained Within The Signal</h2>
+        <p>
+          Now let's look at what happens when the test wave does not match any frequency in the signal.
+          Firstly, this means that the signal needs to contain multiple frequencies, and secondly, we need to be able to
+          change the frequency of the test wave.
+        </p>
+        <p>
+          The blue graph below shows a signal that is composed of three sine waves; 6Hz, 9Hz and 11Hz.
+          To keep things simple, each of these frequencies is present at equal magnitudes.
+        </p>
+        <p>
+          Now as you change the frequency of the test wave, you'll notice that the integral point stays at (or very
+          close to) zero.
+          When the slider is at 0&deg;, the two waves are "in phase" (I.E. they line up perfectly), but when the slider
+          is at 180&deg;, the two waves are in anti-phase (I.E. they are perfectly mis-aligned).
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <h4>Signal + Test Wave</h4>
+        <div id="signalTestBox" class="signalTestBox"></div>
+      </td>
+      <td class="description">
+        <h4>Convolution Curve</h4>
+        <div id="convBox" class="convBox"></div>
+      </td>
+      </td>
+    </tr>
+    <tr>
+      <td class="description" style="vertical-align: top;">
+        <p>
+          When the frequency of the test wave is set to any value other than 6Hz, 9Hz or 11Hz, notice that the integral
+          of the convolution curves stays at (or very close to) zero
+        </p>
+        <p>
+          When the test frequency is set to exactly 6Hz, 9Hz or 11Hz, then the integral jumps up to some large value:
+          about `60` in this case.
+        </p>
+      </td>
+      <td class="description">
+        <h4>Integral of Convolution Curve</h4>
+        <div id="areaBox" class="convBox"></div>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>
