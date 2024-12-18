@@ -5,7 +5,7 @@ const SLIDER_LEFT_X = 15
 const SLIDER_RIGHT_X = 225
 const PHASE_SLIDER_Y = 1.75
 const AMP_SLIDER_Y = 1.5
-const GRAPH_MARGIN = 15
+const GRAPH_MARGIN = 20
 
 let cumulativeIntegral = 0
 let integralMax = 0
@@ -20,7 +20,7 @@ const sigTestBox = JXG.JSXGraph.initBoard('signalTestBox', {
     LOWER_BOUND - GRAPH_MARGIN,
     2,
     UPPER_BOUND + GRAPH_MARGIN,
-    -2
+    -1.2
   ],
   axis: true,
   defaultAxes: { x: { ticks: angleTicks } },
