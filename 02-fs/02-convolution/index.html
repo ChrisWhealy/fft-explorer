@@ -24,7 +24,7 @@
     </tr>
     <tr>
       <td class="description" colspan="2">
-        <h2>When the Test Wave Is Not Contained Within The Signal</h2>
+        <h2>Adjusting the Test Wave To Discover Component Frequencies Within the Signal</h2>
         <p>
           Now let's look at what happens when the test wave does not match any frequency in the signal.
           Firstly, this means that the signal needs to contain multiple frequencies, and secondly, we need to be able to
@@ -65,6 +65,25 @@
       <td class="description">
         <h4>Integral of Convolution Curve</h4>
         <div id="areaBox" class="convBox"></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="description" style="vertical-align: top;" colspan="2">
+        <h3>What Does This Tell Us?</h3>
+        <p>
+          When we see a maximum in the integral of the convolution curve, this tells us three important things:
+        <ol>
+          <li>
+            The signal contains a component equal to the frequency of the test wave.
+          </li>
+          <li>
+            This component occurs at a phase equal to the phase shift of the test wave.
+          </li>
+          <li>
+            The maximum value of the integral is proportional to the amplitude of this component within the signal.
+          </li>
+        </ol>
+        </p>
       </td>
     </tr>
   </table>
