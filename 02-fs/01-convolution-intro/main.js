@@ -9,7 +9,6 @@ const GRAPH_MARGIN = 20
 
 let cumulativeIntegral = 0
 let integralMax = 0
-let integralMin = 0
 
 angleTicks.ticksDistance = 90
 
@@ -109,11 +108,10 @@ let areaPoint = areaBox.create(
   [() => testPhaseSlider.Value(), () => cumulativeIntegral],
   {
     color: 'blue',
-    name: () => cumulativeIntegral,
+    name: () => cumulativeIntegral.toPrecision(5),
     fontSize: 16
   })
-areaBox.create('text', [293, 140, () => `Max: ${integralMax.toPrecision(5)}`], { fontSize: 15 })
-areaBox.create('text', [295, 120, () => `Min: ${integralMin.toPrecision(5)}`], { fontSize: 15 })
+areaBox.create('text', [295, 140, () => `Max: ${integralMax.toPrecision(5)}`], { fontSize: 15 })
 
 // ---------------------------------------------------------------------------------------------------------------
 // Update Convolution and Integral Graphs
@@ -133,7 +131,6 @@ const updateGraphs = () => {
 
   cumulativeIntegral = Math.trunc(cumulativeIntegral * 1000) / 1000
   integralMax = Math.max(integralMax, cumulativeIntegral)
-  integralMin = Math.min(integralMin, cumulativeIntegral)
 
   convBox.update()
   areaBox.update()
@@ -142,7 +139,6 @@ const updateGraphs = () => {
 // Update graphs when sliders are moved
 testAmpSlider.on('drag', () => {
   integralMax = 0
-  integralMin = 0
   updateGraphs()
 })
 testPhaseSlider.on('drag', updateGraphs)

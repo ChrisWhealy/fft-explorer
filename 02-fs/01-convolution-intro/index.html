@@ -25,8 +25,8 @@
     <tr>
       <td class="description" colspan="2">
         <p>
-          <b>To Convole</b>: from the Latin <i>convolvere</i> meaning <i>con</i> = "with" + <i>volvere</i> = "to roll,
-          twist or rotate".
+          <b>To Convole</b>: from the Latin <i>convolvere</i> meaning <i>con</i> = "with" + <i>volvere</i> = "to roll or
+          twist".
         </p>
         <p>
           Therefore, to "convolve" literally means to "roll or twist together".
@@ -52,28 +52,20 @@
       </td>
     </tr>
     <tr>
-      <td class="description">
-        <h4>Signal + Test Wave</h4>
-        <div id="signalTestBox" class="signalTestBox"></div>
-      </td>
       <td class="description" style="vertical-align: top;">
+        <h4>Signal + Test Wave</h4>
         <p>
           Our signal is the blue wave and the phase shift slider controls a red test wave.
         </p>
         <p>
-          As you move the slider left and right, you are shifting the phase of the blue test wave relative to the
+          As you move the slider left and right, you are shifting the phase of the red test wave relative to the
           signal.
           When the slider is at 0&deg;, the two waves are "in phase" (I.E. they line up perfectly), but when the slider
           is at 180&deg;, the two waves are in anti-phase (I.E. they are perfectly mis-aligned).
         </p>
       </td>
-    </tr>
-    <tr>
-      <td class="description">
-        <h4>Convolution Curve</h4>
-        <div id="convBox" class="convBox"></div>
-      </td>
       <td class="description" style="vertical-align: top;">
+        <h4>Convolution Curve</h4>
         <p>
           In order to quantify the degree of misalignment between these two waves, we have to "convolve" the signal with
           the test wave.
@@ -88,17 +80,27 @@
     </tr>
     <tr>
       <td class="description">
-        <h4>Integral of Convolution Curve</h4>
-        <div id="areaBox" class="convBox"></div>
+        <div id="signalTestBox" class="signalTestBox"></div>
       </td>
       <td class="description" style="vertical-align: top;">
+        <div id="convBox" class="convBox"></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+      </td>
+      <td class="description" style="vertical-align: top;">
+        <h4>Integral of Convolution Curve</h4>
         <p>
           The final step is to calculate the area of the green shaded section under the convolution curve.
           In other words, we need to calculate the integral of the convolution curve between 0&deg; and 360&deg;.
         </p>
         <p>
-          This graph shows how the integral varies depending on the phase and amplitude of the test wave.
+          The graph below shows how the area under the convolution wave varies depending on the phase and amplitude of
+          the
+          test wave.
         </p>
+        <div id="areaBox" class="convBox"></div>
       </td>
     </tr>
     <tr>
@@ -106,8 +108,8 @@
         <h2>But What Does This Tell Us?</h2>
         <p>
           What we learn from this is that when the area under the graph reaches a maximum, not only have we discovered
-          that the signal contains the test frequency, but we have also discovered the phase relationship between these
-          two waves.
+          that the signal contains this particular test frequency, but we have also discovered the phase relationship
+          between these two waves.
         </p>
         <p>
           In this case, the maximum area of `180` is reached at `0&deg;` of phase shift.
