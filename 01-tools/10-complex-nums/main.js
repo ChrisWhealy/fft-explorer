@@ -1,13 +1,13 @@
 // Define axis properties
 let realTicks = {
   insertTicks: false,
-  ticksDistance: 0.2,
-  label: 'Real',
+  ticksDistance: 0.5,
+  label: 'Re',
 }
 let imagTicks = {
   insertTicks: false,
-  ticksDistance: 0.2,
-  label: 'Imaginary',
+  ticksDistance: 0.5,
+  label: 'Im',
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

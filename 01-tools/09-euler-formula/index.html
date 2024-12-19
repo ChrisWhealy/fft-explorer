@@ -58,11 +58,11 @@
             <td>`+`</td>
             <td>`&theta;^4/(4!)`</td>
             <td>`+`</td>
-            <td>`x^5/(5!)`</td>
+            <td>`&theta;^5/(5!)`</td>
             <td>`-`</td>
             <td>`&theta;^6/(6!)`</td>
             <td>`-`</td>
-            <td>`x^7/(7!)`</td>
+            <td>`&theta;^7/(7!)`</td>
           </tr>
         </table>
         <p>
@@ -82,14 +82,15 @@
           `e^(ix) = 1 + ix + (ix)^2/(2!) + (ix)^3/(3!) + (ix)^4/(4!) + (ix)^5/(5!) + ...`
         </p>
         <p>
-          Now reduce the various powers of `i` down to their simplest form
+          Remembering that `i^2 = -1`, `i^3 = -i` and `i^4 = 1`, we can reduce the various powers of `i` down to their
+          simplest form
         </p>
         <p>
           `e^(ix) = 1 + ix - x^2/(2!) - (ix^3)/(3!) + x^4/(4!) + (ix^5)/(5!) + ...`
         </p>
         <p>
           We can now see that all the terms raised to an even power have no `i` in them, and all the terms raised to an
-          odd power do have an `i`.
+          odd power do have an `i` but with alternating signs.
         </p>
         <p>
           Next, we can rearrange the terms to group all the even and odd powers together, then from the odd-power terms,
@@ -99,7 +100,9 @@
           `e^(ix) = (1 - x^2/(2!) + x^4/(4!) - &hellip;) + i(x - (x^3)/(3!) + (x^5)/(5!) - &hellip;)`
         </p>
         <p>
-          This might start to look familiar.
+          Does this look familiar?
+        </p>
+        <p>
           All the even powered terms are the Maclaurin series for `cos(&theta;)` and all the odd powered terms are the
           Maclaurin series for `sin(&theta;)`
         </p>
@@ -115,13 +118,15 @@
         <p>
           The presence of `i` in the formula is very important because it helps keep the various terms separate.
           Those terms that contribute towards the calculation of the cosine value do not have `i` in their definition,
-          but those terms that contribute to the calculation of the sine value do have `i` in them.
+          but those terms that contribute towards the calculation of the sine value do have `i` in them.
         </p>
         <h3>Euler's Identity - A Special Case of Euler's Formula</h3>
         <p>
-          In the lesson about measuring angles in radians, we saw that if you create an arc around the circuference of a
-          circle whose length equals exactly one radius, then the angle you have created measures 1 radian.
-          The key point about radians is that we are now measuring rotation in multiples of `pi` &mdash; there are `2
+          Previously, we saw that if you draw an arc around the circumference of a circle whose length equals exactly
+          one radius, then the angle you have created is known as 1 radian (about `57.3&deg;`).
+        </p>
+        <p>
+          What make radians so useful is that we are now measuring rotation in multiples of `pi` &mdash; there are `2
           pi` radians in a full circle.
         </p>
         <p>
