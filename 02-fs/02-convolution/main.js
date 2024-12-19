@@ -1,7 +1,11 @@
-const TEST_FREQ = 5
-const SIGNAL_FREQS = [6, 9, 11]
+const TEST_FREQ = 4
+const SIGNAL = [
+  new Wave(5, 30, 0.5),
+  new Wave(8, 60, 0.3),
+  new Wave(10, 80, 0.5)
+]
 const UPPER_BOUND = 360
-const LOWER_BOUND = 0
+const LOWER_BOUND = 1
 const SLIDER_LEFT_X = 15
 const SLIDER_RIGHT_X = 225
 const PHASE_SLIDER_Y = 1.75
@@ -13,7 +17,7 @@ let integralMax = 0
 
 angleTicks.ticksDistance = 90
 
-// ---------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // Board 1: Signal and Test Waves
 const sigTestBox = JXG.JSXGraph.initBoard('signalTestBox', {
   boundingbox: [
@@ -35,7 +39,7 @@ const testFreqSlider = sigTestBox.create(
   [
     [SLIDER_LEFT_X, AMP_SLIDER_Y],
     [SLIDER_RIGHT_X, AMP_SLIDER_Y],
-    [SIGNAL_FREQS[0] - 2, TEST_FREQ, +SIGNAL_FREQS.slice(-1) + 2]
+    [SIGNAL[0].freq - 2, TEST_FREQ, +SIGNAL.slice(-1)[0].freq + 2]
   ],
   {
     name: 'Test Wave Frequency',
@@ -51,15 +55,16 @@ const testPhaseSlider = sigTestBox.create(
   ],
   {
     name: 'Test Wave Phase',
-    snapWidth: 0.1,
+    precision: 2,
+    snapWidth: 1,
   }
 )
 
-// Signal sine wave
-const signalWave = sigTestBox.create(
-  'functiongraph',
+// Signal wave
+const signalWave = sigTestBox.create('functiongraph',
   [
-    x => (SIGNAL_FREQS.reduce((acc, f) => { acc += sineDegrees(f * x); return acc }, 0)) / SIGNAL_FREQS.length,
+    x => generateSignal(SIGNAL, x),
+    LOWER_BOUND - 1, UPPER_BOUND
   ],
   { strokeColor: 'blue' }
 )
@@ -67,18 +72,22 @@ const signalWave = sigTestBox.create(
 // Test sine wave
 const testWave = sigTestBox.create(
   'functiongraph',
-  [x => sineDegrees(testFreqSlider.Value() * (x + testPhaseSlider.Value()))],
+  [
+    // The test wave phase must vary through one wavelength, so the slider value must be scaled down by the frequency
+    x => cosineDegrees(testFreqSlider.Value() * (x + (testPhaseSlider.Value() / testFreqSlider.Value()))),
+    LOWER_BOUND - 1, UPPER_BOUND
+  ],
   { strokeColor: 'red' }
 )
 
-// ---------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // Board 2: Convolution Graph
 const convBox = JXG.JSXGraph.initBoard('convBox', {
   boundingbox: [
     LOWER_BOUND - GRAPH_MARGIN,
-    1.1,
+    1.5,
     UPPER_BOUND + GRAPH_MARGIN,
-    -1.1
+    -1.5
   ],
   axis: true,
   defaultAxes: { x: { ticks: angleTicks } },
@@ -87,14 +96,15 @@ const convBox = JXG.JSXGraph.initBoard('convBox', {
 })
 convBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-const convolutionGraph = convBox.create('curve', [[], []], {
+const convolutionCurve = convBox.create('curve', [[], [], 0, UPPER_BOUND + 1], {
   strokeColor: 'green',
   name: 'Convolution',
   fillColor: 'green',
   fillOpacity: 0.25,
 })
+convolutionCurve.dataX = [...Array(UPPER_BOUND + 2)].map((_, deg) => deg)
 
-// ---------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // Board 3: Integral of Convolution
 const areaBox = JXG.JSXGraph.initBoard('areaBox', {
   boundingbox: [
@@ -120,21 +130,23 @@ let areaPoint = areaBox.create(
   })
 areaBox.create('text', [295, 140, () => `Max: ${integralMax.toPrecision(5)}`], { fontSize: 15 })
 
-// ---------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 // Update Convolution and Integral Graphs
 const updateGraphs = () => {
   let convolutionHeight = 0
 
   cumulativeIntegral = 0
-  convolutionGraph.dataX = []
-  convolutionGraph.dataY = []
+  convolutionCurve.dataY = [0]
 
   for (let x = LOWER_BOUND; x <= UPPER_BOUND; x++) {
     convolutionHeight = signalWave.Y(x) * testWave.Y(x)
-    convolutionGraph.dataX.push(x)
-    convolutionGraph.dataY.push(convolutionHeight)
+    convolutionCurve.dataY.push(convolutionHeight)
     cumulativeIntegral += convolutionHeight
   }
+
+  // When a fill colour is used to shade the area above and below the X axis, the first and last points of that curve
+  // must be set to zero, otherwise the shaded area does not sit correctly on the X axis
+  convolutionCurve.dataY[UPPER_BOUND + 1] = 0
 
   cumulativeIntegral = Math.trunc(cumulativeIntegral * 1000) / 1000
   integralMax = Math.max(integralMax, cumulativeIntegral)

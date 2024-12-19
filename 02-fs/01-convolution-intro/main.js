@@ -55,12 +55,16 @@ const testPhaseSlider = sigTestBox.create(
 )
 
 // Signal sine wave
-const signalWave = sigTestBox.create('functiongraph', [x => sineDegrees(FREQUENCY * x)], { strokeColor: 'blue' })
+const signalWave = sigTestBox.create('functiongraph',
+  [x => sineDegrees(FREQUENCY * x), LOWER_BOUND, UPPER_BOUND],
+  { strokeColor: 'blue' }
+)
 
 // Test sine wave
 const testWave = sigTestBox.create(
   'functiongraph',
-  [x => testAmpSlider.Value() * sineDegrees(FREQUENCY * (x + testPhaseSlider.Value()))],
+  // The test wave phase must vary through one wavelength, so the slider value must be scaled down by the frequency
+  [x => cosineDegrees(FREQUENCY * (x + (testPhaseSlider.Value() / FREQUENCY))), LOWER_BOUND, UPPER_BOUND],
   { strokeColor: 'red' }
 )
 
@@ -80,12 +84,13 @@ const convBox = JXG.JSXGraph.initBoard('convBox', {
 })
 convBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-const convolutionGraph = convBox.create('curve', [[], []], {
+const convolutionCurve = convBox.create('curve', [[], []], {
   strokeColor: 'green',
   name: 'Convolution',
   fillColor: 'green',
   fillOpacity: 0.25,
 })
+convolutionCurve.dataX = [...Array(UPPER_BOUND + 2)].map((_, deg) => deg)
 
 // ---------------------------------------------------------------------------------------------------------------
 // Board 3: Integral of Convolution
@@ -119,15 +124,17 @@ const updateGraphs = () => {
   let convolutionHeight = 0
 
   cumulativeIntegral = 0
-  convolutionGraph.dataX = []
-  convolutionGraph.dataY = []
+  convolutionCurve.dataY = [0]
 
   for (let x = LOWER_BOUND; x <= UPPER_BOUND; x++) {
     convolutionHeight = signalWave.Y(x) * testWave.Y(x)
-    convolutionGraph.dataX.push(x)
-    convolutionGraph.dataY.push(convolutionHeight)
+    convolutionCurve.dataY.push(convolutionHeight)
     cumulativeIntegral += convolutionHeight
   }
+
+  // When a fill colour is used to shade the area above and below the X axis, the first and last points of that curve
+  // must be set to zero, otherwise the shaded area does not sit correctly on the X axis
+  convolutionCurve.dataY[UPPER_BOUND + 1] = 0
 
   cumulativeIntegral = Math.trunc(cumulativeIntegral * 1000) / 1000
   integralMax = Math.max(integralMax, cumulativeIntegral)

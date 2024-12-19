@@ -19,7 +19,7 @@
   <table class="page-table">
     <tr>
       <th colspan="2">
-        <h1>Convolution Part 1</h1>
+        <h1>Convolution: Signal With Multiple Frequencies</h1>
       </th>
     </tr>
     <tr>
@@ -30,45 +30,73 @@
           Firstly, this means that the signal needs to contain multiple frequencies, and secondly, we need to be able to
           change the frequency of the test wave.
         </p>
+        <table>
+          <tr>
+            <td>
+              <p>
+                The blue graph below shows a signal that is composed of three sine waves:
+              </p>
+              <p>
+                With the test wave set to 4Hz, you'll notice that no matter how you change the test wave's phase, the
+                integral of the convolution curve stays at (or very close to) zero.
+              </p>
+            </td>
+            <td>
+              <table style="border: 1px solid rgb(128, 128, 128); padding: 3px;">
+                <tr>
+                  <th>Component</th>
+                  <th>Magnitude</th>
+                  <th>Phase</th>
+                </tr>
+                <tr>
+                  <td>5 Hz</td>
+                  <td>0.5</td>
+                  <td>30&deg;</td>
+                </tr>
+                <tr>
+                  <td>8 Hz</td>
+                  <td>0.3</td>
+                  <td>60&deg;</td>
+                </tr>
+                <tr>
+                  <td>10 Hz</td>
+                  <td>0.5</td>
+                  <td>80&deg;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
         <p>
-          The blue graph below shows a signal that is composed of three sine waves; 6Hz, 9Hz and 11Hz.
-          To keep things simple, each of these frequencies is present at equal amplitudes.
+          Now start changing the frequency of the test wave.
+          Notice that as it approaches 5Hz, 8Hz or 10Hz, the integral of the convolution curve starts to grow.
         </p>
         <p>
-          With the test wave set to 5Hz, you'll notice that no matter how you change the test wave's phase, the integral
-          of the convolution curve stays at (or very close to) zero.
+          Alternatively, as the frequency of the test wave diverges from 5Hz, 8Hz, or 10Hz, then the integral stays at
+          (or very close to) zero.
         </p>
       </td>
     </tr>
     <tr>
       <td class="description">
         <h4>Signal + Test Wave</h4>
-        <div id="signalTestBox" class="signalTestBox"></div>
+        <div id="signalTestBox" class="waveBoxWide"></div>
       </td>
+    </tr>
+    <tr>
       <td class="description">
         <h4>Convolution Curve</h4>
-        <div id="convBox" class="convBox"></div>
-      </td>
+        <div id="convBox" class="waveBoxWide"></div>
       </td>
     </tr>
     <tr>
-      <td class="description">
-        <p>
-          Now start changing the frequency of the test wave.
-          Notice that as it approaches 6Hz, 9Hz or 11Hz, the integral of the convolution curve starts to grow.
-        </p>
-        <p>
-          Alternatively, as the frequency of the test wave diverges from 6Hz, 9Hz, or 11Hz, then the integral stays at
-          (or very close to) zero.
-        </p>
-      </td>
       <td class="description">
         <h4>Integral of Convolution Curve</h4>
-        <div id="areaBox" class="convBox"></div>
+        <div id="areaBox" class="waveBoxWide"></div>
       </td>
     </tr>
     <tr>
-      <td class="description" style="vertical-align: top;" colspan="2">
+      <td class="description" style="vertical-align: top;">
         <h3>What Does This Tell Us?</h3>
         <p>
           When we see a maximum in the integral of the convolution curve, this tells us three important things:

@@ -65,3 +65,24 @@ const complexDiv = (pointA, pointB) => {
     y: num.y / denom
   }
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Wave class
+class Wave {
+  constructor(freq, phase, amp) {
+    this.freq = freq
+    this.phase = phase
+    this.amp = amp
+  }
+
+  // Return the Y value for a given X in degrees
+  y(x) {
+    return this.amp * cosineDegrees(this.phase + (this.freq * x))
+  }
+}
+
+const generateSignal = (signalComponents, x) =>
+  signalComponents.reduce((acc, wave) => {
+    acc += wave.y(x)
+    return acc
+  }, 0)
