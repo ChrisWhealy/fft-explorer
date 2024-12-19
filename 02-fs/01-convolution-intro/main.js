@@ -3,8 +3,7 @@ const UPPER_BOUND = 360
 const LOWER_BOUND = 0
 const SLIDER_LEFT_X = 15
 const SLIDER_RIGHT_X = 225
-const PHASE_SLIDER_Y = 1.75
-const AMP_SLIDER_Y = 1.5
+const PHASE_SLIDER_Y = 1.5
 const GRAPH_MARGIN = 20
 
 let cumulativeIntegral = 0
@@ -17,7 +16,7 @@ angleTicks.ticksDistance = 90
 const sigTestBox = JXG.JSXGraph.initBoard('signalTestBox', {
   boundingbox: [
     LOWER_BOUND - GRAPH_MARGIN,
-    2,
+    1.75,
     UPPER_BOUND + GRAPH_MARGIN,
     -1.2
   ],
@@ -28,19 +27,6 @@ const sigTestBox = JXG.JSXGraph.initBoard('signalTestBox', {
 })
 sigTestBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-// Sliders for signal amplitude and test phase and amplitude
-const testAmpSlider = sigTestBox.create(
-  'slider',
-  [
-    [SLIDER_LEFT_X, AMP_SLIDER_Y],
-    [SLIDER_RIGHT_X, AMP_SLIDER_Y],
-    [0, 1, 1]
-  ],
-  {
-    name: 'Test Wave Amplitude',
-    snapWidth: 0.01,
-  }
-)
 const testPhaseSlider = sigTestBox.create(
   'slider',
   [
@@ -50,7 +36,7 @@ const testPhaseSlider = sigTestBox.create(
   ],
   {
     name: 'Test Wave Phase',
-    snapWidth: 0.1,
+    snapWidth: 1,
   }
 )
 
@@ -143,11 +129,7 @@ const updateGraphs = () => {
   areaBox.update()
 }
 
-// Update graphs when sliders are moved
-testAmpSlider.on('drag', () => {
-  integralMax = 0
-  updateGraphs()
-})
+// Update graphs when slider is moved
 testPhaseSlider.on('drag', updateGraphs)
 
 // Initial graph update
