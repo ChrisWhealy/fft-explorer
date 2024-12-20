@@ -15,6 +15,6 @@ let cosineSlider = twoWavesBox.create('slider', [[120, 1.1], [250, 1.1], [0, 90,
 let sine = twoWavesBox.create('functiongraph', [x => sineDegrees(x)], { size: 1, name: 'A', strokeColor: 'green' })
 let cosine = twoWavesBox.create(
   'functiongraph',
-  [x => cosineDegreesWithOffset(x, cosineSlider.Value() - 90)],
+  [x => sineDegrees(x + cosineSlider.Value())],
   { size: 1, name: 'B', strokeColor: 'blue' }
 )
