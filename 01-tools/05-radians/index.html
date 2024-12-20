@@ -14,64 +14,90 @@
 <body>
   <table class="page-table">
     <tr>
+      <th>
+        <h1>Radians: Another Way To Measure Angles</h1>
+      </th>
+    </tr>
+    <tr>
       <td class="description">
-        <h2>Radians: Another Way To Measure Angles</h2>
         <p>
           The most widespread unit for measuring rotation is degrees (indicated by a small circle &deg; written to the
           top right of a number).
-          A full circle is divided into 360 degrees, so a half turn is 180 degrees, and quarter turn is 90 degrees.
+          A full circle is divided into 360 degrees, so a half turn is 180 degrees, and quarter turn is 90 degrees etc.
         </p>
         <p>
           The exact reason for why there are <a href="https://en.wikipedia.org/wiki/Degree_(angle)">360 degrees in a
             circle</a> is unclear, but it is most likely related to the fact that there are approximately 360 days in a
           year, and the Ancient Babylonians used both a 360 day calendar and a base 60 (or sexagesimal) counting system.
-          It is also a very convenient number for calculating even subdivisions because, except for 7 and 11, it is
-          evenly divisible by every number between 2 and 12.
-        </p>
-        <h3>Radians</h3>
-        <p style="margin-left: auto; margin-right: auto; width: 50%;">
-          <img src="/img/calculate_pi.png" />
         </p>
         <p>
-          It has been known since antiquity that the ratio of the
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <mfrac>
-              <mtext>circumference</mtext>
-              <mtext>diameter</mtext>
-            </mfrac>
-          </math>
-          equals a value just over 3.
+          Also, 360 is also a very convenient number for calculation because, except for 7 and 11, it is evenly
+          divisible by
+          every number between 2 and 12.
         </p>
-        <p>
-          Even though we cannot calculate its exact value, this ratio crops up in calculations so frequently (and
-          sometimes unexpectedly), that it becomes very convenient to define rotation in terms of it.
-          This ratio is identified by the Greek letter `pi` or Pi.
-        </p>
-        <p>
-          A radian is a unit of rotation and is defined by creating an arc around a circle, such that the length of
-          the arc equals the radius of the circle.
-        </p>
-        <p style="margin-left: auto; margin-right: auto; width: 50%;">
-          <img src="/img/radian.png" />
-        </p>
-        <p>
-          Since we know that the diameter divides into the circumference `pi` times and that the diameter is twice
-          the length of the radius, we can write
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <mi>c</mi>
-            <mo>=</mo>
-            <mtext>&#x03C0;</mtext>
-            <mi>d</mi>
-            <mo>=</mo>
-            <mn>2</mn>
-            <mtext>&#x03C0;</mtext>
-            <mi>r</mi>
-          </math>
-        </p>
-        <p>
-          If we create an angle whose arc length equals one radius, then there will be `2pi` such angles in the length
-          of the circumference, that is, in one full rotation.
-        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <h2>Pi</h2>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td class="description" style="vertical-align: top; width: 30%;">
+              <img src="/img/calculate_pi.png" />
+            </td>
+            <td class="description">
+              <p>
+                It has been known since antiquity that the ratio of a circle's circumference to its diameter is a value
+                just
+                over 3 &mdash; although arriving at a precise value turned out to be quite tricky.
+              </p>
+              <p>
+                This ratio is identified by the Greek letter `pi` or Pi and for many practical purposes, is taken to
+                equal
+                `22/7`.
+              </p>
+              <p>
+                Even though we cannot calculate its exact value, this ratio crops up so frequently (and sometimes
+                unexpectedly), that it becomes very convenient to define rotation in units of `pi`.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <h2>Radians</h2>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td class="description" style="vertical-align: top;">
+              <p>
+                A radian is a unit of rotation and is defined by creating an arc around a circle, such that the length
+                of the arc equals the radius of the circle.
+              </p>
+              <p>
+                Knowing that the diameter divides into the circumference `pi` times, and that the diameter is twice the
+                length of the radius, we can write `c = pi d = 2 pi r`.
+              </p>
+              <p>
+                If we create an angle whose arc length equals one radius, then there will be `2pi` such angles in the
+                length
+                of the circumference, that is, in one full rotation.
+              </p>
+            </td>
+            <td style="width: 30%">
+              <img src="/img/radian.png" />
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   </table>
