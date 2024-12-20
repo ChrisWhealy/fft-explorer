@@ -5,6 +5,7 @@ let prevCosine = 1
 let sineMemo = []
 let cosineMemo = []
 
+// ---------------------------------------------------------------------------------------------------------------------
 // Define graphs
 let pythagBox = JXG.JSXGraph.initBoard('circleBox', {
   boundingbox: [-1.25, 1.25, 1.25, -1.25],
@@ -33,6 +34,7 @@ let cosineBox = JXG.JSXGraph.initBoard('cosineBox', {
 })
 cosineBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
+// ---------------------------------------------------------------------------------------------------------------------
 let origin = pythagBox.create('point', [0, 0], { name: 'O', size: 1, face: 'o', fixed: true })
 let circumference = pythagBox.create('point', [1, 0], { name: 'C', size: 1, face: 'o', fixed: true })
 let xAxis = pythagBox.create('point', [1, 0], { name: 'H', size: 1 })
@@ -43,16 +45,20 @@ let width = pythagBox.create('line', [yAxis, circumference], edgeLineStyle)
 let radius = pythagBox.create('line', [origin, circumference], radiusLineStyle)
 let angleText = pythagBox.create('text', [0.8, 1, () => `&theta; = ${idx}`])
 
+// ---------------------------------------------------------------------------------------------------------------------
 // Sine wave
 let sineXAxis = sineBox.create('point', [0, 0], { name: 'H', size: 1 })
 let sineYAxis = sineBox.create('point', [0, 0], { name: 'C', size: 1 })
 let sineHeight = sineBox.create('line', [sineXAxis, sineYAxis], edgeLineStyle)
 
+// ---------------------------------------------------------------------------------------------------------------------
 // Cosine wave
 let cosineXAxis = cosineBox.create('point', [0, 0], { name: 'C', size: 1 })
 let cosineYAxis = cosineBox.create('point', [1, 0], { name: 'W', size: 1 })
 let cosineHeight = cosineBox.create('line', [cosineXAxis, cosineYAxis], edgeLineStyle)
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Animation
 setInterval(() => {
   let x = circleData[idx].x
   let y = circleData[idx].y

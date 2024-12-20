@@ -1,3 +1,4 @@
+// ---------------------------------------------------------------------------------------------------------------------
 // Define phase shift graph
 let waveBox = JXG.JSXGraph.initBoard('waveBox', {
   boundingbox: [-15, 1.75, 375, -1.25],
@@ -7,6 +8,8 @@ let waveBox = JXG.JSXGraph.initBoard('waveBox', {
   showNavigation: false,
 })
 waveBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
+
+// ---------------------------------------------------------------------------------------------------------------------
 const TEXT_Y = 120
 const SLIDER_Y_START = TEXT_Y + 35
 const SLIDER_Y_END = SLIDER_Y_START + 130
@@ -23,6 +26,7 @@ let freqSlider = waveBox.create('slider', [[SLIDER_Y_START, FREQ_X], [SLIDER_Y_E
 let ampTxt = waveBox.create('text', [TEXT_Y, AMP_X, 'Amplitude']);
 let ampSlider = waveBox.create('slider', [[SLIDER_Y_START, AMP_X], [SLIDER_Y_END, AMP_X], [1, 1, 0]]);
 
+// ---------------------------------------------------------------------------------------------------------------------
 // Draw the wave
 let wave = waveBox.create(
   'functiongraph',

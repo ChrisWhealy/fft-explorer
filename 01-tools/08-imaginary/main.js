@@ -1,3 +1,4 @@
+// ---------------------------------------------------------------------------------------------------------------------
 // Define axis properties
 let realTicks = {
   insertTicks: false,
@@ -10,7 +11,7 @@ let imagTicks = {
   label: 'Imaginary',
 }
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// ---------------------------------------------------------------------------------------------------------------------
 let imagRotBox = JXG.JSXGraph.initBoard('imagRotBox', {
   boundingbox: [-1.25, 1.25, 1.25, -1.25],
   axis: true,
@@ -23,6 +24,7 @@ let imagRotBox = JXG.JSXGraph.initBoard('imagRotBox', {
 })
 imagRotBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
+// ---------------------------------------------------------------------------------------------------------------------
 let p = imagRotBox.create(
   'point',
   [1, 0],
@@ -39,6 +41,9 @@ let steps = [
 let rotation = 0
 
 imagRotBox.create('text', [0.6, 0.75, () => `i<sup>${rotation}</sup> = ${steps[rotation].value}`], { fontSize: 18 });
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Animate point rotation
 setInterval(
   () => {
     rotation = (rotation + 1) % 4

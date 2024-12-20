@@ -1,3 +1,4 @@
+// ---------------------------------------------------------------------------------------------------------------------
 // Pythagoras box
 let pythagBox = JXG.JSXGraph.initBoard('pythagorasBox', {
   boundingbox: [-1.8, 1.8, 1.8, -1.5],
@@ -9,16 +10,20 @@ let pythagBox = JXG.JSXGraph.initBoard('pythagorasBox', {
 })
 pythagBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
+// ---------------------------------------------------------------------------------------------------------------------
 let origin = pythagBox.create('point', [0, 0], { name: '', size: 1, face: 'o', fixed: true })
 let edge = pythagBox.create('point', [1, 0], { name: '', visible: false, fixed: true })
 let circle = pythagBox.create('circle', [origin, edge], circumferenceStyle)
 
 let circumference = pythagBox.create('glider', [0.8, 0.6, circle], { name: 'C' })
 let xAxis = pythagBox.create('point', [() => circumference.X(), 0], { name: 'H', size: 1, fixed: true })
+
 pythagBox.create('line', [xAxis, circumference], edgeLineStyle)
 pythagBox.create('line', [origin, xAxis], edgeLineStyle)
 pythagBox.create('line', [origin, circumference], radiusLineStyle)
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Labels for the sides corresponding to sin/cos
 pythagBox.create(
   'text',
   [
@@ -37,6 +42,8 @@ pythagBox.create(
   ],
   {});
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Summary text
 pythagBox.create('text',
   [-1.7, 1.78,
   () => `Area of the square on the opposite = ${(circumference.Y() * circumference.Y()).toPrecision(3)}`
@@ -59,6 +66,7 @@ pythagBox.create('text',
   ]
 );
 
+// ---------------------------------------------------------------------------------------------------------------------
 // Create square on the hypotenuse
 const squareOnTheHypotenuse = pythagBox.create('polygon', [
   () => [0, 0],
@@ -100,6 +108,7 @@ const squareOnTheHypotenuse = pythagBox.create('polygon', [
   strokeColor: BLUE_GREEN,
 })
 
+// ---------------------------------------------------------------------------------------------------------------------
 // Create square on the opposite
 const squareOnTheOpposite = pythagBox.create('polygon', [
   () => [circumference.X(), circumference.Y()],
@@ -139,6 +148,7 @@ const squareOnTheOpposite = pythagBox.create('polygon', [
   strokeColor: BLUE_GREEN,
 })
 
+// ---------------------------------------------------------------------------------------------------------------------
 // Create square on the adjacent
 const squareOnTheAdjacent = pythagBox.create('polygon', [
   () => [0, 0],
