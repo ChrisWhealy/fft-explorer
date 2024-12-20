@@ -18,8 +18,12 @@
 <body>
   <table class="page-table">
     <tr>
+      <th>
+        <h1>Complex Numbers</h1>
+      </th>
+    </tr>
+    <tr>
       <td class="description">
-        <h2>Complex Numbers</h2>
         <table>
           <tr>
             <td style="vertical-align: top;">
@@ -73,6 +77,8 @@
             </td>
           </tr>
         </table>
+        <br>
+
         <h2>Different Ways to Represent a Complex Number</h2>
         <h3>Cartesian (or Rectangular) Form</h3>
         <p>
@@ -85,6 +91,8 @@
           This representation is known as the Cartesian or Rectangular Form because the point is described in terms of
           the lengths of two sides of a right triangle.
         </p>
+        <br>
+
         <h3>Polar Form</h3>
         <p>
           But can't we just walk in a straight line from the origin directly to the point?
@@ -150,43 +158,59 @@
         <p>
           So the polar coordinates for the point `4 + 3i` are `(5, 36.87&deg;)`
         </p>
-        <h3>Exponential Form</h3>
-        <p>
-          Lastly, we have the exponential form that can be derived directly from Euler's Formula.
-        </p>
-        <p>
-          `e^(i&theta;) = cos(&theta;) + i sin(&theta;)`
-        </p>
-        <p>
-          Remembering what we said earlier about circles, we should remember that the expression of Euler's Formula
-          shown above is for a circle with a radius of `1`.
-          To extend this formula to handle a circle of any radius `r`, we must include a term for the radius:
-        </p>
-        <p>
-          `r e^(i&theta;) = r(cos(&theta;) + i sin(&theta;))`
-        </p>
-        <p>
-          In our example, `&theta; = 36.87&deg;` and `r = 5`, so `4 + 3i` expressed in exponential form is
-          `5e^(36.87&deg;i)`
-        </p>
-        <p>
-          Lastly, we should also note that the angle has been expressed in degrees rather than the more usual radians.
-        </p>
-        <p>
-          To convert degrees to radians, we must multiply the angle in degrees by `pi` then divide by `180`.
-        </p>
-        <p>
-          `(36.87&deg; xx pi)/ 180 = 0.644`
-        </p>
-        <p>
-          So using radians, `4 + 3i` expressed in exponential form is `5e^(0.644i)`
-        </p>
-        <p>
-          In the graph below, the red dot starts at location `4 + 3i`.
-          As you drag it around, you will see its value in the three different representations change.
-        </p>
+        <br>
 
-        <div id="complexBox" class="complexBox"></div>
+        <h3>Exponential Form</h3>
+        <table>
+          <tr>
+            <td style="vertical-align: top;">
+              <p>
+                Lastly, we have the exponential form that can be derived directly from Euler's Formula.
+              </p>
+              <p>
+                `e^(i&theta;) = cos(&theta;) + i sin(&theta;)`
+              </p>
+              <p>
+                Remembering what we said earlier about circles, we should remember that the expression of Euler's
+                Formula
+                shown above is for a circle with a radius of `1`.
+                To extend this formula to handle a circle of any radius `r`, we must include a term for the radius:
+              </p>
+              <p>
+                `r e^(i&theta;) = r(cos(&theta;) + i sin(&theta;))`
+              </p>
+              <p>
+                In our example, `&theta; = 36.87&deg;` and `r = 5`, so `4 + 3i` expressed in exponential form is
+                `5e^(36.87&deg;i)`
+              </p>
+              <p>
+                Lastly, we should also note that the angle has been expressed in degrees rather than the more usual
+                radians.
+              </p>
+              <p>
+                To convert degrees to radians, we must multiply the angle in degrees by `pi` then divide by `180`.
+              </p>
+              <p>
+                <br>
+                `(36.87&deg; xx pi)/ 180 = 0.644`
+              </p>
+              <p>
+                So using radians, `4 + 3i` expressed in exponential form is `5e^(0.644i)`
+              </p>
+            </td>
+            <td style="vertical-align: top;">
+              <div id="complexBox" class="complexBox"></div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <p>
+                In the graph above, the red dot starts at location `4 + 3i`.
+                As you drag it around, you will see its value in the three different representations change.
+              </p>
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   </table>
