@@ -38,9 +38,9 @@
                   Bernoulli</a> (1655 - 1705).
               </p>
               <p>
-                Bernoulli was investigating the nature of compound interest and discovered that no matter how many times
-                you calculate compound interest during the year, the original sum will never grow by more than a factor
-                of 2.718
+                Bernoulli was investigating the nature of compound interest and discovered that no matter how many
+                intervals you divide a year into, when calculating compound interest for each of those intervals, the
+                original sum will never grow by more than a factor of `2.718`.
               </p>
             </td>
             <td style="vertical-align: top;">
@@ -50,7 +50,7 @@
           </tr>
         </table>
         <p>
-          The formula for calculating this limit is `(1 + 1/n)^n` where `n` is the number of times when compound
+          The formula for calculating this limit is `(1 + 1/n)^n` where `n` is the number of intervals when compound
           interest is calculated.
         </p>
         <p>
@@ -58,15 +58,19 @@
           Change `n` to 24 and the growth factor rises to `2.664`.
           Bernoulli's insight was to realise that as `n` grows to infinity, so the result approaches, but never exceeds
           `2.718`.
+        </p>
+        <p>
           This is an example of a limit.
         </p>
         <p>
           To 30 decimal places, this value is `2.718281828459045235360287471352`
         </p>
+
         <h3>Infinite Series for `e`</h3>
         <p>
           However, it was Leonhard Euler who demonstrated that the same limit could be calculated using an infinite
           series.
+          When he used this number in his calculations, Euler assigned it the letter `e`.
         </p>
         <p>
           The formula Euler derived is this: `e = sum_(n=0)^oo 1/(n!)`
@@ -81,15 +85,15 @@
           </li>
           <li>
             Below the capital sigma, we can see `n=0` and above, we see the symbol for infinity `oo`.
-            This tells us the starting and ending numbers for each term in the series &mdash; which in this case goes on
-            for ever&hellip;
+            This tells us to start with `n` set to `0`, then continue all the way up to infinity&hellip;
           </li>
           <li>
             Next, we see the formula `1/(n!)`<br>
             This formula tells us how to calculate each term in the series: all we have to do is replace `n` with the
             next value in the sequence.
             So we get the value of the first term by setting `n=0`, then to that, we add the value when `n=1`, then to
-            that, we add the value when `n=2`, then `n=3`, then `n=4` and&hellip; You get the idea.
+            that, we add the value when `n=2`, then `n=3`, then `n=4` and&hellip;<br><br>
+            You get the idea.
           </li>
         </ol>
         <p>
@@ -117,6 +121,10 @@
         <p>
           `e = 1 + 1 + 1/2 + 1/6 + 1/24 + 1/120 + ...`
         </p>
+        <p>
+          The more terms you include in this series, the more precise a value you get for `e`.
+        </p>
+
         <h3>Infinite Series for `e^x`</h3>
         <p>
           More generally, if you wish to calculate `e` raised to some power `x`, then the formula is very similar:
