@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml'] }
+    }
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <th colspan="2">
+        <h1>Convolution: Calculating A Component's Magnitude</h1>
+      </th>
+    </tr>
+    <tr>
+      <td class="description" colspan="2">
+        <table>
+          <tr>
+            <td>
+              <p>
+                As before, our signal is composed of three sine waves:
+              </p>
+              <p>
+                When the integral of the convolution wave reaches a maximum, we can use that value to calculate that
+                component's magnitude.
+              </p>
+              <p>
+                Here, the test wave has been set to a frequency of 5Hz and a phase of 30&deg;.
+                This corresponds to the maximum of `90` for the 5Hz component within the signal
+              </p>
+            </td>
+            <td style="vertical-align: top;">
+              <table style="border: 1px solid rgb(128, 128, 128); padding: 3px;">
+                <tr>
+                  <th>Component</th>
+                  <th>Magnitude</th>
+                  <th>Phase</th>
+                </tr>
+                <tr>
+                  <td>5 Hz</td>
+                  <td>0.5</td>
+                  <td>30&deg;</td>
+                </tr>
+                <tr>
+                  <td>8 Hz</td>
+                  <td>0.3</td>
+                  <td>60&deg;</td>
+                </tr>
+                <tr>
+                  <td>10 Hz</td>
+                  <td>0.5</td>
+                  <td>80&deg;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="description">
+        <h4>Signal + Test Wave</h4>
+        <div id="signalTestBox" class="waveBoxHalf"></div>
+      </td>
+      <td class="description">
+        <h4>Convolution Curve</h4>
+        <div id="convBox" class="waveBoxHalf"></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="description" style="vertical-align: top;">
+        <p>
+          To calculate a component's magnitude, we use the following formula:
+        </p>
+        <p>
+          `Magnitude = 2 xx (max) / (360&deg;)`
+        </p>
+        <p>
+          In this case, `max = 90`, so
+        </p>
+        <p>
+          `Magnitude = 2 xx 90 / (360&deg;)`<br>
+          `Magnitude = 0.5`
+        </p>
+        <p>
+          You can confirm this for yourself by setting the test wave phase and frequency to the values shown in the
+          table above.
+          First, confirm that the maximum occurs at the phase angle the table says it should, then plug the maximum
+          value of the integral into the above equation.
+        </p>
+      </td>
+      <td class="description">
+        <h4>Integral of Convolution Curve</h4>
+        <div id="areaBox" class="waveBoxHalf"></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="description" colspan="2">
+        <h3>Fourier Series</h3>
+        <p>
+          By deconstructing this particular signal, we have just found a Fourier Series.
+        </p>
+
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>

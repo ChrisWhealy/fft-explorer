@@ -24,7 +24,7 @@
     </tr>
     <tr>
       <td class="description">
-        <h2>Adjusting the Test Wave To Discover Component Frequencies Within the Signal</h2>
+        <h2>Discovering Component Frequencies Within the Signal</h2>
         <p>
           Now let's look at what happens when the test wave does not match any frequency in the signal.
           Firstly, this means that the signal needs to contain multiple frequencies, and secondly, we need to be able to
@@ -34,7 +34,7 @@
           <tr>
             <td>
               <p>
-                The blue graph below shows a signal that is composed of three sine waves:
+                The blue graph below shows a signal composed of the three sine waves shown in the table:
               </p>
               <p>
                 With the test wave set to 4Hz, you'll notice that no matter how you change the test wave's phase, the
@@ -68,6 +68,9 @@
           </tr>
         </table>
         <p>
+          This is simply because there is no 4Hz component in the signal.
+        </p>
+        <p>
           Now start changing the frequency of the test wave.
           Notice that as it approaches 5Hz, 8Hz or 10Hz, the integral of the convolution curve starts to grow.
         </p>
@@ -97,7 +100,7 @@
     </tr>
     <tr>
       <td class="description" style="vertical-align: top;">
-        <h3>What Does This Tell Us?</h3>
+        <h2>What Does This Tell Us?</h2>
         <p>
           When we see a maximum in the integral of the convolution curve, this tells us three important things:
         <ol>
@@ -105,7 +108,7 @@
             The signal contains a component equal to the frequency of the test wave.
           </li>
           <li>
-            This component occurs at a phase equal to the phase shift of the test wave.
+            This component in the signal occurs at a phase equal to the phase shift of the test wave.
           </li>
           <li>
             The maximum value of the integral is proportional to the amplitude of this component within the signal.
