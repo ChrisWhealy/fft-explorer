@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://jsxgraph.org/distrib/jsxgraph.css" />
+  <link rel="stylesheet" type="text/css" href="/css/common.css" />
+  <script>
+    MathJax = {
+      loader: { load: ['input/asciimath', 'output/chtml', 'ui/menu'] },
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script type="text/javascript" src="https://jsxgraph.org/distrib/jsxgraphcore.js"></script>
+  <script type="text/javascript" src="/utils.js"></script>
+  <script type="text/javascript" src="/jsxgraph_styles.js"></script>
+</head>
+
+<body>
+  <table class="page-table">
+    <tr>
+      <th colspan="2">
+        <h1>Negative Frequency</h1>
+      </th>
+    </tr>
+    <tr>
+      <td colspan="2" class="description">
+        <table cellpadding="3px" cellspcing="0px">
+          <tr>
+            <td>
+              <img src="/img/uh.gif" />
+            </td>
+            <td>
+              <p>
+                As soon as you read a statement like "negative frequency", your brain will probably rebel against the
+                idea and
+                reject it as complete nonsense because it appears to describe a physical impossibility.
+              </p>
+              <p>
+                Well, this would certainly be correct if you try to imagine something oscillating `-5` times per second.
+              </p>
+            </td>
+          </tr>
+        </table>
+        <p>
+          But before you hit the mental "Eject" button, consider the way sine and cosine waves are generated.
+        </p>
+        <p>
+          The circular plot shows a point moving around the circumference of a circle, and as it moves, it projects
+          lines onto the X and Y axes.
+        </p>
+        <p>
+          The sine and cosine waves are created by plotting the vertical and horizontal positions of these projections.
+        </p>
+        <p>
+          However, in order for this to work, we have had to define two, somewhat arbitrary starting conditions:
+        <ol>
+          <li>0&deg; of rotation corresponds to the positive direction of the X axis</li>
+          <li>Positive rotation moves in the anti-clockwise direction</li>
+        </ol>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="circleBox" class="circleBox"></div>
+      </td>
+      <td>
+        <div id="sineBox" class="sineBox"></div>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+        <div id="cosineBox" class="cosineBox"></div>
+      </td>
+      <td class="description" style="vertical-align: top;">
+        <h2>Rotating the Other Way</h2>
+        <p>
+          But what would happen to the sine and cosine waves if we decided to rotate in the opposite direction?
+        </p>
+        <p>
+          Hit the Fowards/Backwards button and watch the effect this has on the trace of the sine and cosine waves.
+        </p>
+        <p>
+          Nada. Zip. Tiddly Squat&hellip;
+        </p>
+        <p>
+          As far as the sine and cosine waves we observe out here "in the real world" are concerned, it makes no
+          differences whether the angle of rotation is considered a positive or negative value.
+          This distinction exists only in the mathematics.
+        </p>
+        <p>
+          So when the point is moving "backwards" around the circle, the speed at which it does so is what is meant by
+          "negative frequency", but as you can see, it makes no material difference to the resulting sine or cosine
+          waves.
+        </p>
+        <br>
+
+        <h2>Let's Go Back to Euler's Formula</h2>
+        <p>
+          Remember from <a href="/01-tools/09-euler-formula/index.html">lesson 9 in section 1</a> we learnt that Euler's
+          Formula is:
+        </p>
+        <p style="text-align: center;">
+          `e^(i&theta;) = cos(&theta;) + i sin(&theta;)`
+        </p>
+        <p>
+          This formula expresses a profound connection between exponential functions and trigonometric functions.
+        </p>
+        <p>
+          In our current usage, we have assumed that the angle `&theta;` increases in the positive (I.E. anti-clockwise)
+          direction.
+          But what if we start to rotate in the opposite direction and `&theta;` becomes increasingly negative?
+        </p>
+        <p>
+          Then we now have:
+        </p>
+        <p style="text-align: center;">
+          `e^(-i&theta;) = cos(-&theta;) + i sin(-&theta;)`
+        </p>
+        <p>
+          However, we know that the `cos` function is symmetric about the Y axis, so `cos(-&theta;) = cos(&theta;)`
+        </p>
+        <p>
+          We also know that `sin(-&theta;) = -sin(&theta;)`
+        </p>
+        <p>
+          Therefore, we can rewrite the above function like this:
+        </p>
+        <p style="text-align: center;">
+          `e^(-i&theta;) = cos(&theta;) - i sin(&theta;)`
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="description" style="vertical-align: top;">
+        <p>These two relationships can be shown graphically like this</p>
+        <img src="/img/sin-cos-exponential.svg" width="400" />
+      </td>
+      <td class="description">
+        <p>
+          If we add the positive and negative versions of the Fourier functions together, we get:
+        </p>
+        <table class="eq-sequence">
+          <tr>
+            <td>`e^(i&theta;) + e^(-i&theta;)`</td>
+            <td>`=`</td>
+            <td>`cos(&theta;) + i sin(&theta;) + cos(&theta;) - i sin(&theta;)`</td>
+          </tr>
+          <tr>
+            <td>`e^(i&theta;) + e^(-i&theta;)`</td>
+            <td>`=`</td>
+            <td>`cos(&theta;) + cos(&theta;) + i sin(&theta;) - i sin(&theta;)`</td>
+          </tr>
+          <tr>
+            <td>`e^(i&theta;) + e^(-i&theta;)`</td>
+            <td>`=`</td>
+            <td>`2cos(&theta;)`</td>
+          </tr>
+          <tr>
+            <td style="text-align: right;">`cos(&theta;)`</td>
+            <td>`=`</td>
+            <td>`(e^(i&theta;) + e^(-i&theta;))/2`</td>
+          </tr>
+        </table>
+        <br>
+
+        <p>
+          Similarly, if we subtract the negative version from the positive version, we get:
+        </p>
+        <table class="eq-sequence">
+          <tr>
+            <td>`e^(i&theta;) - e^(-i&theta;)`</td>
+            <td>`=`</td>
+            <td>`cos(&theta;) + i sin(&theta;) - (cos(&theta;) - i sin(&theta;))`</td>
+          </tr>
+          <tr>
+            <td>`e^(i&theta;) - e^(-i&theta;)`</td>
+            <td>`=`</td>
+            <td>`cos(&theta;) - cos(&theta;) + i sin(&theta;) + i sin(&theta;)`</td>
+          </tr>
+          <tr>
+            <td>`e^(i&theta;) - e^(-i&theta;)`</td>
+            <td>`=`</td>
+            <td>`2sin(&theta;)`</td>
+          </tr>
+          <tr>
+            <td style="text-align: right;">`sin(&theta;)`</td>
+            <td>`=`</td>
+            <td>`(e^(i&theta;) - e^(-i&theta;))/2`</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="description" colspan="2">
+        <p>
+          These two functions give us another profound insight into the direct equivalence between the trigonometric
+          functions `sin` and `cos` and their exponential counterparts.
+        </p>
+        <table style="width: 40%; margin-left: auto; margin-right: auto;">
+          <tr>
+            <td>`cos(&theta;) = (e^(i&theta;) + e^(-i&theta;))/2`</td>
+            <td>`sin(&theta;) = (e^(i&theta;) - e^(-i&theta;))/2`</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>

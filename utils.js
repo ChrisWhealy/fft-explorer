@@ -17,7 +17,7 @@ const deg2RadBuffer = [...Array(360)].map((_, deg) => deg * RADIANS_PER_DEGREE)
 const deg2Rad = degrees => deg2RadBuffer[degrees]
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Generate the points for a unit circle otrdered anti-clockwise
+// Generate the points for a unit circle ordered anti-clockwise
 const circleData = [...Array(360)].map((_, degrees) => ({
   x: Math.cos(deg2Rad(degrees)),
   y: Math.sin(deg2Rad(degrees))
