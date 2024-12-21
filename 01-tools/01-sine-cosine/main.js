@@ -1,3 +1,5 @@
+const ANIMATION_INTERVAL = 80
+
 let idx = 0
 let prevIdx = 0
 let prevSine = 0
@@ -59,7 +61,7 @@ let cosineHeight = cosineBox.create('line', [cosineXAxis, cosineYAxis], edgeLine
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Animation
-setInterval(() => {
+const animation = () => {
   let x = circleData[idx].x
   let y = circleData[idx].y
 
@@ -87,4 +89,17 @@ setInterval(() => {
   prevCosine = x
   prevSine = y
   idx = ++idx % 360
-}, 80)
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Start/stop button
+// Temporarily set runState to true so that the animation starts automatically
+let runState = true
+let startStop = pythagBox.create('button',
+  [-1.1, 1.1,
+  () => runState ? "Stop" : "Start",
+  () => runState = runState ? clearInterval(runState) : setInterval(animation, ANIMATION_INTERVAL)
+  ]
+)
+
+runState = setInterval(animation, ANIMATION_INTERVAL)

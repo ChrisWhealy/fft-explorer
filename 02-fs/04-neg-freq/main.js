@@ -54,23 +54,13 @@ let angleText = pythagBox.create('text', [0.8, 1, () => `&theta; = ${idx}`])
 // Temporarily set runState to true so that the animation starts automatically
 let runState = true
 let startStop = pythagBox.create('button',
-  [-1.1, 1.1, () => runState ? "Stop" : "Start", () => {
-    if (runState) {
-      clearInterval(runState)
-      runState = null
-    } else {
-      runState = setInterval(animation, ANIMATION_INTERVAL)
-    }
-  }]
+  [-1.1, 1.1,
+  () => runState ? "Stop" : "Start",
+  () => runState = runState ? clearInterval(runState) : setInterval(animation, ANIMATION_INTERVAL)
+  ]
 )
 let fwdsBckwds = pythagBox.create('button',
-  [-0.75, 1.1, () => fwds ? "Backwards" : "Forwards", () => {
-    if (fwds) {
-      fwds = false
-    } else {
-      fwds = true
-    }
-  }]
+  [-0.75, 1.1, () => fwds ? "Backwards" : "Forwards", () => { fwds = !fwds }]
 )
 
 // ---------------------------------------------------------------------------------------------------------------------
