@@ -9,14 +9,14 @@ let cosineMemo = []
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Define graphs
-let pythagBox = JXG.JSXGraph.initBoard('circleBox', {
+let circleBox = JXG.JSXGraph.initBoard('circleBox', {
   boundingbox: [-1.25, 1.25, 1.25, -1.25],
   keepaspectratio: true,
   axis: true,
   showCopyright: false,
   showNavigation: false,
 })
-pythagBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
+circleBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
 let sineBox = JXG.JSXGraph.initBoard('sineBox', {
   boundingbox: [-15, 1.25, 375, -1.25],
@@ -37,15 +37,15 @@ let cosineBox = JXG.JSXGraph.initBoard('cosineBox', {
 cosineBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
 // ---------------------------------------------------------------------------------------------------------------------
-let origin = pythagBox.create('point', [0, 0], { name: 'O', size: 1, face: 'o', fixed: true })
-let circumference = pythagBox.create('point', [1, 0], { name: 'C', size: 1, face: 'o', fixed: true })
-let xAxis = pythagBox.create('point', [1, 0], { name: 'H', size: 1 })
-let yAxis = pythagBox.create('point', [0, 0], { name: 'W', size: 1 })
-let circle = pythagBox.create('circle', [origin, circumference], circumferenceStyle)
-let height = pythagBox.create('line', [xAxis, circumference], edgeLineStyle)
-let width = pythagBox.create('line', [yAxis, circumference], edgeLineStyle)
-let radius = pythagBox.create('line', [origin, circumference], radiusLineStyle)
-let angleText = pythagBox.create('text', [0.8, 1, () => `&theta; = ${idx}`])
+let origin = circleBox.create('point', [0, 0], { name: 'O', size: 1, face: 'o', fixed: true })
+let circumference = circleBox.create('point', [1, 0], { name: 'C', size: 1, face: 'o', fixed: true })
+let xAxis = circleBox.create('point', [1, 0], { name: 'H', size: 1 })
+let yAxis = circleBox.create('point', [0, 0], { name: 'W', size: 1 })
+let circle = circleBox.create('circle', [origin, circumference], circumferenceStyle)
+let height = circleBox.create('line', [xAxis, circumference], edgeLineStyle)
+let width = circleBox.create('line', [yAxis, circumference], edgeLineStyle)
+let radius = circleBox.create('line', [origin, circumference], radiusLineStyle)
+let angleText = circleBox.create('text', [0.8, 1, () => `&theta; = ${idx}`])
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Sine wave
@@ -95,7 +95,7 @@ const animation = () => {
 // Start/stop button
 // Temporarily set runState to true so that the animation starts automatically
 let runState = true
-let startStop = pythagBox.create('button',
+let startStop = circleBox.create('button',
   [-1.1, 1.1,
   () => runState ? "Stop" : "Start",
   () => runState = runState ? clearInterval(runState) : setInterval(animation, ANIMATION_INTERVAL)
