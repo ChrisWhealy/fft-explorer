@@ -42,7 +42,10 @@ const pointStyle = (colourArg, labelArg, fontSizeArg, isFixed) => ({
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Sine and cosine from value in degrees
 const sineDegrees = x => Math.sin(x % 360 / DEGREES_PER_RADIAN)
+const arcSineDegrees = x => Math.asin(x) * RADIANS_PER_DEGREE
 const cosineDegrees = x => Math.cos(x % 360 / DEGREES_PER_RADIAN)
+const arcCosineDegrees = x => Math.acos(x) * RADIANS_PER_DEGREE
+const pointAngleDegrees = p => Math.atan2(p.Y(), p.X()) * DEGREES_PER_RADIAN
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Complex arithmetic

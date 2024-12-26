@@ -39,9 +39,27 @@ twoWavesBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 let sin1 = twoWavesBox.create('functiongraph', [x => sineDegrees(x), LOWER_BOUND, UPPER_BOUND], { size: 1, strokeColor: 'green' })
 let sin2 = twoWavesBox.create('functiongraph', [x => cosineDegrees(x), LOWER_BOUND, UPPER_BOUND], { size: 1, strokeColor: 'blue' })
 
+let phasePoint = twoWavesBox.create('point', [
+  () => {
+    let deg = pointAngleDegrees(circumference)
+    return deg > 0 ? deg : 360 + deg
+  },
+  () => circumference.Y()
+], { name: 'P' })
+let xPoint = twoWavesBox.create('point', [
+  () => {
+    let deg = pointAngleDegrees(circumference)
+    return deg > 0 ? deg : 360 + deg
+  },
+  0
+], { visible: false })
+let yPoint = twoWavesBox.create('point', [0, () => circumference.Y()], { visible: false })
+
+let horizLine2 = twoWavesBox.create('line', [yPoint, phasePoint], edgeLineStyle)
+let vertLine = twoWavesBox.create('line', [phasePoint, xPoint], edgeLineStyle)
+
 const updatePhase = () => {
-  const deg = Math.atan2(circumference.Y(), circumference.X()) * DEGREES_PER_RADIAN
-  sin2.Y = x => sineDegrees(x + deg)
+  sin2.Y = x => sineDegrees(x + pointAngleDegrees(circumference))
   twoWavesBox.update()
 }
 
