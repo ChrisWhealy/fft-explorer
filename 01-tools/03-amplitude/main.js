@@ -46,27 +46,37 @@ waveBox.create('text', [30, AMP_X, () => `Amplitude(P) = ${p.Y().toPrecision(2)}
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Define new wave graph
-let newWaveBox = JXG.JSXGraph.initBoard('newWaveBox', {
-  boundingbox: [-15, 2.1, UPPER_BOUND + 15, -2.1],
-  axis: true,
-  defaultAxes: { x: { ticks: angleTicks } },
-  showCopyright: false,
-  showNavigation: false,
-})
-newWaveBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
+// let newWaveBox = JXG.JSXGraph.initBoard('newWaveBox', {
+//   boundingbox: [-15, 2.1, UPPER_BOUND + 15, -2.1],
+//   axis: true,
+//   defaultAxes: { x: { ticks: angleTicks } },
+//   showCopyright: false,
+//   showNavigation: false,
+// })
+// newWaveBox.containerObj.style.backgroundColor = OFF_WHITE_BLUE
 
-let cosAmpSlider = newWaveBox.create('slider', [[SLIDER_Y_START, 1.75], [SLIDER_Y_END, 1.75], [1, 1, 0]], { name: 'Cosine Amplitude' })
-let sineAmpSlider = newWaveBox.create('slider', [[SLIDER_Y_START, 1.55], [SLIDER_Y_END, 1.55], [1, 1, 0]], { name: 'Sine Amplitude' })
+// let cosText = newWaveBox.create('text', [SLIDER_Y_START - 20, 1.75, 'Cosine'])
+// let sinText = newWaveBox.create('text', [SLIDER_Y_START - 20, 1.55, 'Sine'])
+// let cosAmpSlider = newWaveBox.create('slider', [[SLIDER_Y_START, 1.75], [SLIDER_Y_END, 1.75], [1, 1, 0]], { name: 'Amplitude' })
+// let sinAmpSlider = newWaveBox.create('slider', [[SLIDER_Y_START, 1.55], [SLIDER_Y_END, 1.55], [1, 1, 0]], { name: 'Amplitude' })
 
-let cosWave = newWaveBox.create('functiongraph', [
-  x => cosAmpSlider.Value() * cosineDegrees(x), LOWER_BOUND, UPPER_BOUND
-], { size: 1, name: 'B', strokeColor: 'blue' }
-)
-let sinWave = newWaveBox.create('functiongraph', [
-  x => sineAmpSlider.Value() * sineDegrees(x), LOWER_BOUND, UPPER_BOUND
-], { size: 1, name: 'B', strokeColor: 'green' }
-)
-let sumWave = newWaveBox.create('functiongraph', [
-  x => cosWave.Y(x) + sinWave.Y(x), LOWER_BOUND, UPPER_BOUND
-], { size: 1, name: 'B', strokeColor: 'red' }
-)
+// let cosWave = newWaveBox.create('functiongraph', [
+//   x => cosAmpSlider.Value() * cosineDegrees(x), LOWER_BOUND, UPPER_BOUND
+// ], { size: 1, name: 'B', strokeColor: 'blue' }
+// )
+// let sinWave = newWaveBox.create('functiongraph', [
+//   x => sinAmpSlider.Value() * sineDegrees(x), LOWER_BOUND, UPPER_BOUND
+// ], { size: 1, name: 'B', strokeColor: 'green' }
+// )
+// let sumWave = newWaveBox.create('functiongraph', [
+//   x => cosWave.Y(x) + sinWave.Y(x), LOWER_BOUND, UPPER_BOUND
+// ], { size: 1, name: 'B', strokeColor: 'red' }
+// )
+
+// let sumAmpText = newWaveBox.create('text', [
+//   SLIDER_Y_START -20, 1.35,
+//   () => {
+//     let amp = Math.trunc(Math.atan2(sinAmpSlider.Value(), cosAmpSlider.Value()) * DEGREES_PER_RADIAN * 100) / 100
+//     return `Sum amplitude = ${amp}`
+//   }
+// ])
