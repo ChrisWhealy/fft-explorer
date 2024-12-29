@@ -141,11 +141,27 @@
           `e^(-i&theta;) = cos(&theta;) - i sin(&theta;)`
         </p>
 
+        <h3>A Conjugal Relationship</h3>
+        <p>
+          Remember from <a href="/01-tools/11-complex-arith/index.html" target="_new">lesson 11 in section 1</a> when we
+          looked at performing arithmetic with complex numbers?
+          In order to perform complex division, we first needed to multiply both the numerator and denominator by the
+          complex conjugate of the denominator.
+        </p>
+        <p>
+          Now look at the above equation: `cos(&theta;) - i sin(&theta;)` is the conjugate of `cos(&theta;) + i sin(&theta;)`
+        </p>
+        <p>
+          Therefore `e^(-i&theta;)` is the conjugate of `e^(i&theta;)`
+        </p>
+
+
+        <h3>Another Way of Writing `sin` and `cos`</h3>
         <table>
           <tr>
-            <td class="description"  style="vertical-align: top; width: 50%;">
+            <td class="description" style="vertical-align: top; width: 50%;">
               <p>
-                If we add the positive and negative versions of the Fourier functions together, we get:
+                If we add the conjugate to Euler's formula, we get:
               </p>
               <table class="eq-sequence">
                 <tr>
@@ -172,14 +188,14 @@
             </td>
             <td class="description" style="width: 50%;">
               <p>
-                Similarly, if we subtract the negative version from the positive version, we get:
+                Similarly, if we subtract the conjugate from Euler's formula, we get:
               </p>
               <table class="eq-sequence">
                 <tr>
 
                   <td>`e^(i&theta;) - e^(-i&theta;)`</td>
                   <td>`=`</td>
-                  <td>`(cos(&theta;) + isin(&theta;)) - (cos(&theta;) - isin(&theta;))`</td>
+                  <td>`cos(&theta;) + isin(&theta;) - (cos(&theta;) - isin(&theta;))`</td>
                 </tr>
                 <tr>
                   <td>`e^(i&theta;) - e^(-i&theta;)`</td>
