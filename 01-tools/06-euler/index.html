@@ -50,79 +50,175 @@
           </tr>
         </table>
         <p>
-          The formula for calculating this limit is `(1 + 1/n)^n` where `n` is the number of intervals when compound
+          The formula for calculating this limit is `(1 + 1/n)^n` where `n` is the number of intervals at which compound
           interest is calculated.
         </p>
         <p>
-          So if you calculated interest once every month, `n` would be `12`, and the growth factor is `2.613`.
+          So if you calculate interest once every month, `n` would be `12`, and the growth factor is `2.613`.
           Change `n` to 24 and the growth factor rises to `2.664`.
-          Bernoulli's insight was to realise that as `n` grows to infinity, so the result approaches, but never exceeds
-          `2.718`.
         </p>
         <p>
-          This is an example of a limit.
+          The key point here is to realise that since each successive term is always smaller than the previous term, the
+          rate at which the overall total grows will slow down until it converges on (but never exceeds) some maximum
+          value.
         </p>
         <p>
           To 30 decimal places, this value is `2.718281828459045235360287471352`
         </p>
+        <p>
+          This is an example of a converging infinite series.
+        </p>
 
         <h3>Infinite Series for `e`</h3>
         <p>
-          However, it was Leonhard Euler who demonstrated that the same limit could be calculated using an infinite
-          series.
-          When he used this number in his calculations, Euler assigned it the letter `e`.
+          However, it was Leonhard Euler who demonstrated that the same limit could be calculated using a simpler
+          infinite series.
         </p>
         <p>
-          The formula Euler derived is this: `e = sum_(n=0)^oo 1/(n!)`
+          The formula Euler derived is this: `sum_(n=0)^oo 1/(n!)` and when he used this number in his calculations,
+          he assigned it the letter `e`.
         </p>
         <p>
           If you're not familiar with this notation, here's how to understand it:
         </p>
         <ol>
           <li>
-            The capital Greek letter sigma means "summation"; so we immediately know we will have to add up some
-            numbers.
+            <p>The capital Greek letter sigma `sum_` means "summation"; so we immediately know we will have to add up a
+              sequence
+              of numbers.
+            </p>
+            <p>
+            </p>
+            <p>
+              But which numbers?
+            </p>
           </li>
           <li>
-            Below the capital sigma, we can see `n=0` and above, we see the symbol for infinity `oo`.
-            This tells us to start with `n` set to `0`, then continue all the way up to infinity&hellip;
+            <p>Below the capital sigma, we can see `n=0` and above, we see the symbol for infinity `oo`.
+              This tells us to add up a series of numbers derived from the formula on the right.
+            </p>
+            <p>
+              Each term in the series is calculated by setting `n` first to `0`, then `1`, then `2`, then `3`, all the
+              way up to infinity&hellip;
+            </p>
           </li>
           <li>
-            Next, we see the formula `1/(n!)`<br>
-            This formula tells us how to calculate each term in the series: all we have to do is replace `n` with the
-            next value in the sequence.
-            So we get the value of the first term by setting `n=0`, then to that, we add the value when `n=1`, then to
-            that, we add the value when `n=2`, then `n=3`, then `n=4` and&hellip;<br><br>
-            You get the idea.
+            <p>
+              Next, we see the formula `1/(n!)`<br>
+              This formula tells us how to calculate each term in the series: all we have to do is replace `n` with the
+              next value in the sequence.
+            </p>
+            <table class="eq-sequence">
+              <tr>
+                <td>
+                  So we end up with this:
+                </td>
+                <td>
+                  `e =`
+                </td>
+                <td>
+                  `1/(0!)`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/(1!)`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/(2!)`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/(3!)`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/(4!)`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/(5!)`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `...`
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  When each of the <a href="https://en.wikipedia.org/wiki/Factorial" target="_new">factorials</a> are
+                  calculated, we get
+                </td>
+                <td>
+                  `e =`
+                </td>
+                <td>
+                  `1`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/2`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/6`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/24`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `1/120`
+                </td>
+                <td>
+                  `+`
+                </td>
+                <td>
+                  `...`
+                </td>
+              </tr>
+              <tr>
+                <td colspan="15">
+                  <p>
+                    You might be wondering how the first term evaluates to `1` when `n=0`.
+                    This is because <a href="https://en.wikipedia.org/wiki/Factorial#Factorial_of_zero" target="_new">`0! = 1`</a>.
+                  </p>
+                </td>
+              </tr>
+            </table>
           </li>
         </ol>
         <p>
-
           However, in practical terms, it is completely impossible to add up an infinite series of numbers, so we'll
-          just do the best we can by adding up the first few terms.
-        </p>
-        <p>
-          `e = 1/(0!) + 1/(1!) + 1/(2!) + 1/(3!) + 1/(4!) + 1/(5!) + ...`
-        </p>
-        <p>
-          If you're wondering what the `!` after the number means, this is the factorial symbol.
-        </p>
-        <p>
-          So `n! = n xx (n-1) xx (n-2) xx (n-3) xx ... xx 2 xx 1`<br>
-        </p>
-        <p>
-          You might also be wondering how, if the first value of `n` is `0`, why the first term in the series is `1`
-          and not `0`.
-          This is because <a href="https://en.wikipedia.org/wiki/Factorial#Factorial_of_zero" target="_new">`0! = 1`</a>
-        </p>
-        <p>
-          So when fully expanded, the first six terms of the summation series looks like this:
-        </p>
-        <p>
-          `e = 1 + 1 + 1/2 + 1/6 + 1/24 + 1/120 + ...`
-        </p>
-        <p>
-          The more terms you include in this series, the more precise a value you get for `e`.
+          just add up enough terms to give us a sufficiently accurate value to work with.
+          This is called a <i>partial sum</i>.
         </p>
 
         <h3>Infinite Series for `e^x`</h3>
