@@ -50,17 +50,18 @@
           </tr>
         </table>
         <p>
-          The formula for calculating this limit is `(1 + 1/n)^n` where `n` is the number of intervals at which compound
-          interest is calculated.
+          The formula Bernoulli discovered for calculating this limit is `(1 + 1/n)^n` where `n` is the number of
+          intervals at which compound interest is calculated.
         </p>
         <p>
-          So if you calculate interest once every month, `n` would be `12`, and the growth factor is `2.613`.
+          So, over the period of a year, if you calculate interest once every month, `n` would be `12`, and the growth
+          factor is `2.613`.
           Change `n` to 24 and the growth factor rises to `2.664`.
         </p>
         <p>
-          The key point here is to realise that since each successive term is always smaller than the previous term, the
-          rate at which the overall total grows will slow down until it converges on (but never exceeds) some maximum
-          value.
+          The key point here is to realise that as `n` becomes larger and larger, you are calculating the `n`th exponent
+          of a number that becomes closer and closer to (but never reaches) `1`.
+          This in turn, means that the answer comes closer and closer to (but never exceeds) a maximum value of `2.718`.
         </p>
         <p>
           To 30 decimal places, this value is `2.718281828459045235360287471352`
@@ -75,8 +76,8 @@
           infinite series.
         </p>
         <p>
-          The formula Euler derived is this: `sum_(n=0)^oo 1/(n!)` and when he used this number in his calculations,
-          he assigned it the letter `e`.
+          The formula Euler derived is this: `e = sum_(n=0)^oo 1/(n!)` and when he used the number this calculation
+          produces, he assigned it the letter `e`.
         </p>
         <p>
           If you're not familiar with this notation, here's how to understand it:
@@ -95,11 +96,7 @@
           </li>
           <li>
             <p>Below the capital sigma, we can see `n=0` and above, we see the symbol for infinity `oo`.
-              This tells us to add up a series of numbers derived from the formula on the right.
-            </p>
-            <p>
-              Each term in the series is calculated by setting `n` first to `0`, then `1`, then `2`, then `3`, all the
-              way up to infinity&hellip;
+              This defines the limits of our range: `n` starts at `0` and goes all the way up to infinity&hellip;
             </p>
           </li>
           <li>
@@ -207,8 +204,9 @@
               <tr>
                 <td colspan="15">
                   <p>
-                    You might be wondering how the first term evaluates to `1` when `n=0`.
-                    This is because <a href="https://en.wikipedia.org/wiki/Factorial#Factorial_of_zero" target="_new">`0! = 1`</a>.
+                    You might be wondering how the first term evaluates to `1` when `n=0`.<br>
+                    This is because <a href="https://en.wikipedia.org/wiki/Factorial#Factorial_of_zero"
+                      target="_new">`0! = 1`</a>.
                   </p>
                 </td>
               </tr>
