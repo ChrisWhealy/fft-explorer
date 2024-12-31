@@ -25,24 +25,29 @@
     <tr>
       <td class="description">
         <p>
-          Let's face it, many of our familiar arithmetic operations such as addition or division simply break when we
-          try to perform calculations involving `sqrt (-1)`.
+          As we have just stated, our familiar arithmetic operations such as addition or division apply only to real
+          numbers; so when we try to combine real numbers with imaginary numbers, the familiar rules of arithmetic
+          simply break.
         </p>
         <p>
-          For example, in `3 / (sqrt (-1))`, how many times does `sqrt (-1)` go into `3`?
+          For example, in `3 + sqrt (-1)`, how much bigger does `3` become after adding `sqrt (-1)`?
+        </p>
+        <p>
+          This is a question we simply cannot answer because real and imaginary numbers don't play nicely together.
         </p>
         <p>
           The only operation that can begin to handle `sqrt (-1)` is multiplication, but even then, we can only fully
           calculate values that multiply an even number of `i`'s together.
         </p>
         <p>
-          In spite of these limitations, we still need to know how to perform arithmetic using complex numbers.
+          In spite of these limitations, we can still perform arithmetic operations on complex numbers.
         </p>
         <br>
 
         <h2>Addition</h2>
         <p>
-          Adding two complex numbers such as `(4 + 3i)` and `(1 - 2i)` is simply a matter of adding the real parts together,
+          Adding two complex numbers such as `(4 + 3i)` and `(1 - 2i)` is simply a matter of adding the real parts
+          together,
           then adding the imaginary parts.
         </p>
         <table class="eq-sequence">
@@ -86,12 +91,15 @@
 
         <h2>Multiplication</h2>
         <p>
-          Multiplying two complex numbers such `(4 + 3i)` and `(1 - 2i)` is a little more involved because we must follow
-          the FOIL rule.
+          Multiplying two complex numbers such `(4 + 3i)` and `(1 - 2i)` is a little more involved.
+          There are several ways for performing multiplication, and here we will show two different approaches: the FOIL
+          method and the area method.
+          Hopefully, one will make intuitive sense to you.
         </p>
         <table>
           <tr>
             <td style="vertical-align: top;">
+              <h3>The FOIL Method</h3>
               <p>
                 FOIL is an acronym for <b>F</b>irst, <b>O</b>utside, <b>I</b>nside, <b>L</b>ast that helps you remember
                 the order in which terms are to be multiplied.
@@ -103,7 +111,7 @@
                 </tr>
                 <tr>
                   <td>`=>`</td>
-                  <td>`(3 * 1) + (3 * -2i) + (2i * 1) + (2i * -2i)`</td>
+                  <td>`(3 ** 1) + (3 ** -2i) + (2i ** 1) + (2i ** -2i)`</td>
                 </tr>
                 <tr>
                   <td>`=>`</td>
@@ -121,6 +129,52 @@
             </td>
             <td>
               <img src="/img/FOIL.png" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h3>The Area Method</h3>
+              <p>
+                Another way of thinking of complex numbers is to represent the real and complex parts on the sides of a
+                rectangle.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">
+              <p>
+                In our case, `(2 + 3i) ** (1 - 2i)` would be written like this:
+              </p>
+              <p>
+                We now have 4 individual rectangles whose areas are easy to calculate.
+                The total area is then simply the sum of the areas of the 4 smaller rectangles.
+              </p>
+              <table class="eq-sequence">
+                <tr>
+                  <td></td>
+                  <td>`(3 + 2i) ** (1 - 2i)`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>Top row `(3 ** 1) + (1 ** 2i)` `+`<br>
+                    Bottom row `(3 ** -2i) + (2i ** -2i)`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>`3 + 2i - 6i - 4i^2`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>`3 - 4i + 4`</td>
+                </tr>
+                <tr>
+                  <td>`=>`</td>
+                  <td>`7 - 4i`</td>
+                </tr>
+              </table>
+            </td>
+            <td style="vertical-align: top;">
+              <img src="/img/Area%20Method.png" />
             </td>
           </tr>
         </table>
