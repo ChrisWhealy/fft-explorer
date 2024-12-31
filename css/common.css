@@ -18,6 +18,11 @@ p {
   margin-bottom: 0.5em;
 }
 
+dt {
+  font-size: 18pt;
+  font-weight: 700;
+}
+
 table.page-table {
   border: solid rgb(40, 40, 40) 1px;
   background-color: rgb(255, 255, 238, 1);
